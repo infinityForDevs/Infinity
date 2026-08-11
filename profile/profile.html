@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infinity — My Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="profile.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+
+<body>
+
+  <!-- Icon sprite: every icon below is drawn once and reused with <use> -->
+  <svg style="display:none">
+    <symbol id="icon-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+      <circle cx="12" cy="13" r="4"></circle>
+    </symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </symbol>
+    <symbol id="icon-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+    </symbol>
+    <symbol id="icon-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="4" y1="21" x2="4" y2="14"></line>
+      <line x1="4" y1="10" x2="4" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12" y2="3"></line>
+      <line x1="20" y1="21" x2="20" y2="16"></line>
+      <line x1="20" y1="12" x2="20" y2="3"></line>
+      <line x1="1" y1="14" x2="7" y2="14"></line>
+      <line x1="9" y1="8" x2="15" y2="8"></line>
+      <line x1="17" y1="16" x2="23" y2="16"></line>
+    </symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+      <polyline points="16 17 21 12 16 7"></polyline>
+      <line x1="21" y1="12" x2="9" y2="12"></line>
+    </symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"></line>
+      <line x1="6" y1="6" x2="18" y2="18"></line>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+      <circle cx="12" cy="12" r="3"></circle>
+    </symbol>
+  </svg>
+
+  <input type="file" id="avatarFileInput" accept="image/*" hidden>
+
+  <div class="profile-panel open" id="userProfilePanel">
+
+    <header class="pp-header">
+      <button type="button" class="pp-back-btn" id="closeProfileBtn" aria-label="Close profile">
+        <a href="../homepage/homepage.html"><svg width="22" height="22"><use href="#icon-back"></use></svg></a>
+      </button>
+      <h1 class="pp-title">My Profile</h1>
+      <div class="pp-edit-actions">
+        <button type="button" class="pp-cancel-btn" id="cancelProfileBtn" hidden>Cancel</button>
+        <button type="button" class="pp-edit-btn" id="editProfileBtn">Edit</button>
+      </div>
+    </header>
+
+    <div class="pp-body">
+
+      <section class="profile-hero-card">
+        <div class="hero-texture" aria-hidden="true"></div>
+
+        <div class="hero-avatar-wrapper">
+          <img src="../assets/IMG-20260702-WA0032.jpg" alt="Profile picture" class="hero-avatar" id="heroAvatarPic">
+          <span class="hero-status-dot" id="heroStatusDot" aria-label="Online"></span>
+          <button type="button" class="avatar-edit-overlay" id="avatarEditBtn" aria-label="Change profile picture" hidden>
+            <svg width="12" height="12"><use href="#icon-camera"></use></svg>
+          </button>
+        </div>
+
+        <!-- VIEW MODE -->
+        <h2 class="hero-username" id="viewUsername">@sensatech</h2>
+        <span class="hero-role" id="viewRole">Full-Stack Developer</span>
+        <p class="hero-bio" id="viewBio">Building the future on Infinity ♾️ Tech enthusiast &amp; designer.</p>
+
+        <div class="hero-meta">
+          <span class="meta-item">
+            <svg width="12" height="12"><use href="#icon-pin"></use></svg>
+            <span id="viewLocation">California, USA</span>
+          </span>
+          <span class="meta-item">
+            <svg width="12" height="12"><use href="#icon-calendar"></use></svg>
+            Joined Jul 2026
+          </span>
+        </div>
+
+        <!-- EDIT MODE -->
+        <div class="hero-edit-fields" id="heroEditFields" hidden>
+          <div class="edit-row">
+            <label for="editUsername">Username</label>
+            <input type="text" id="editUsername" class="edit-input" maxlength="30">
+          </div>
+          <div class="edit-row">
+            <label for="editRole">Role / Title</label>
+            <input type="text" id="editRole" class="edit-input" maxlength="40">
+          </div>
+          <div class="edit-row">
+            <label for="editBio">Bio</label>
+            <textarea id="editBio" class="edit-input edit-textarea" maxlength="160" rows="3"></textarea>
+          </div>
+          <div class="edit-row">
+            <label for="editLocation">Location</label>
+            <input type="text" id="editLocation" class="edit-input" maxlength="40">
+          </div>
+        </div>
+
+        <div class="tech-stack" id="profileTechStack">
+          <span class="tech-chip"><span aria-hidden="true"></span>JavaScript<button class="chip-remove" hidden aria-label="Remove"><svg width="10" height="10"><use href="#icon-x"></use></svg></button></span>
+          <span class="tech-chip"><span aria-hidden="true"></span>React<button class="chip-remove" hidden aria-label="Remove"><svg width="10" height="10"><use href="#icon-x"></use></svg></button></span>
+          <span class="tech-chip"><span aria-hidden="true"></span>Node.js<button class="chip-remove" hidden aria-label="Remove"><svg width="10" height="10"><use href="#icon-x"></use></svg></button></span>
+          <span class="tech-chip"><span aria-hidden="true"></span>Firebase<button class="chip-remove" hidden aria-label="Remove"><svg width="10" height="10"><use href="#icon-x"></use></svg></button></span>
+          <button type="button" class="tech-chip-add" id="addTechChipBtn" hidden aria-label="Add technology">
+            <svg width="12" height="12"><use href="#icon-plus"></use></svg>
+          </button>
+        </div>
+
+        <div class="infinity-score-badge">
+          <span class="badge-icon" aria-hidden="true"></span>
+          <span class="badge-text"><strong>1,420</strong> Aura's</span>
+        </div>
+      </section>
+
+      <section class="profile-stats-grid" aria-label="Profile statistics">
+        <div class="stat-box">
+          <span class="stat-value" id="profilePostCount">1</span>
+          <span class="stat-label">Posts</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value">84</span>
+          <span class="stat-label">Comments</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value">7</span>
+          <span class="stat-label">Spaces</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-value" id="profileStreakCount">12<span class="stat-unit">d</span></span>
+          <span class="stat-label">Streak</span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           PROFILE VIEWS — dummy data for now, wired for a real API later
+      ============================================================ -->
+      <section class="views-card">
+        <div class="resources-header">
+          <h3 class="resources-title">Profile Views</h3>
+          <span class="resources-caption" id="viewsCaption">— · last 30d</span>
+        </div>
+
+        <div class="views-total-row">
+          <svg width="14" height="14"><use href="#icon-eye"></use></svg>
+          <span class="views-total" id="viewsToday">—</span>
+          <span class="views-total-label">views today</span>
+        </div>
+
+        <div class="views-chart-wrap">
+          <canvas id="profileViewsChart" height="140"></canvas>
+        </div>
+
+        <p class="views-footnote">
+          Dummy data for now — this will pull from real daily view counts once the backend endpoint is live.
+        </p>
+      </section>
+
+      <section class="resources-card">
+        <div class="resources-header">
+          <h3 class="resources-title">Activity</h3>
+          <span class="resources-caption">132 · last 90d</span>
+        </div>
+        <div class="laugh">🙈</div>
+        <span>No posts yet</span>
+        <div class="dashboard-link">see more insights in <span class="dashboard-text"><u>the dashboard</u></span></div>
+      </section>
+
+      <nav class="profile-menu-list" aria-label="Profile actions">
+        <div class="menu-item" id="profileViewDrafts" role="button" tabindex="0">
+          <div class="menu-item-left">
+            <span class="menu-item-icon">
+              <svg width="16" height="16"><use href="#icon-folder"></use></svg>
+            </span>
+            <span>My Saved Drafts</span>
+          </div>
+          <svg width="14" height="14"><use href="#icon-chevron"></use></svg>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-left">
+            <span class="menu-item-icon"><span class="status-dot-icon" aria-hidden="true"></span></span>
+            <span>Online Status</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="statusToggleCheckbox" checked aria-label="Toggle online status">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="menu-item" role="button" tabindex="0">
+          <div class="menu-item-left">
+            <span class="menu-item-icon">
+              <svg width="16" height="16"><use href="#icon-sliders"></use></svg>
+            </span>
+            <span>Preferences</span>
+          </div>
+          <svg width="14" height="14"><use href="#icon-chevron"></use></svg>
+        </div>
+
+        <div class="menu-item logout-item" id="logoutBtn" role="button" tabindex="0">
+          <div class="menu-item-left">
+            <span class="menu-item-icon">
+              <svg width="16" height="16"><use href="#icon-logout"></use></svg>
+            </span>
+            <span>Log Out</span>
+          </div>
+        </div>
+      </nav>
+
+    </div>
+  </div>
+
+<script>
+/* ============================================================
+   PROFILE VIEWS CHART — dummy data
+   Swap `fetchDummyViews()` for a real fetch('/api/profile/:id/views')
+   call later; the render function doesn't need to change.
+============================================================ */
+
+function fetchDummyViews(days = 30) {
+  const data = [];
+  const today = new Date();
+  let seed = 42;
+  function rand() {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  }
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(today.getDate() - i);
+    const base = 8 + Math.sin(i / 3) * 5;
+    const noise = rand() * 10;
+    const views = Math.max(0, Math.round(base + noise));
+    data.push({
+      date: d.toISOString().slice(0, 10),
+      label: d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+      views
+    });
+  }
+  return data;
+}
+
+const viewsData = fetchDummyViews(30);
+const totalViews = viewsData.reduce((sum, d) => sum + d.views, 0);
+const todayViews = viewsData[viewsData.length - 1].views;
+
+document.getElementById('viewsCaption').textContent = `${totalViews} · last 30d`;
+document.getElementById('viewsToday').textContent = todayViews;
+
+const ctx = document.getElementById('profileViewsChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: viewsData.map(d => d.label),
+    datasets: [{
+      label: 'Profile views',
+      data: viewsData.map(d => d.views),
+      borderColor: '#38bdf8',
+      backgroundColor: 'rgba(56, 189, 248, 0.12)',
+      pointRadius: 0,
+      pointHoverRadius: 4,
+      pointHoverBackgroundColor: '#38bdf8',
+      borderWidth: 2,
+      fill: true,
+      tension: 0.35
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { intersect: false, mode: 'index' },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#19191c',
+        borderColor: '#333338',
+        borderWidth: 1,
+        titleColor: '#96969e',
+        bodyColor: '#f5f5f7',
+        titleFont: { family: 'JetBrains Mono', size: 11 },
+        bodyFont: { family: 'JetBrains Mono', size: 12, weight: '700' },
+        padding: 10,
+        displayColors: false
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: {
+          color: '#6a6a72',
+          font: { family: 'JetBrains Mono', size: 10 },
+          maxRotation: 0,
+          autoSkip: true,
+          maxTicksLimit: 6
+        }
+      },
+      y: {
+        beginAtZero: true,
+        grid: { color: 'rgba(255,255,255,0.06)' },
+        ticks: {
+          color: '#6a6a72',
+          font: { family: 'JetBrains Mono', size: 10 },
+          maxTicksLimit: 4
+        }
+      }
+    }
+  }
+});
+
+/* ============================================================
+   EDIT PROFILE — functional toggle, in-memory only (no backend yet)
+============================================================ */
+
+const editBtn      = document.getElementById('editProfileBtn');
+const cancelBtn     = document.getElementById('cancelProfileBtn');
+const heroEditFields = document.getElementById('heroEditFields');
+const avatarEditBtn  = document.getElementById('avatarEditBtn');
+const avatarFileInput = document.getElementById('avatarFileInput');
+const heroAvatarPic   = document.getElementById('heroAvatarPic');
+
+const viewUsername = document.getElementById('viewUsername');
+const viewRole      = document.getElementById('viewRole');
+const viewBio       = document.getElementById('viewBio');
+const viewLocation  = document.getElementById('viewLocation');
+
+const editUsername = document.getElementById('editUsername');
+const editRole      = document.getElementById('editRole');
+const editBio       = document.getElementById('editBio');
+const editLocation  = document.getElementById('editLocation');
+
+let isEditing = false;
+let snapshot = null; // stores original values for Cancel
+
+function enterEditMode() {
+  isEditing = true;
+
+  // snapshot current values so Cancel can restore them
+  snapshot = {
+    username: viewUsername.textContent,
+    role: viewRole.textContent,
+    bio: viewBio.textContent,
+    location: viewLocation.textContent,
+    avatarSrc: heroAvatarPic.src,
+    chips: Array.from(document.querySelectorAll('.tech-chip')).map(c => c.dataset.label || c.childNodes[1]?.textContent?.trim())
+  };
+
+  // prefill edit inputs
+  editUsername.value = viewUsername.textContent.replace(/^@/, '');
+  editRole.value = viewRole.textContent;
+  editBio.value = viewBio.textContent;
+  editLocation.value = viewLocation.textContent;
+
+  // swap view -> edit
+  viewUsername.hidden = true;
+  viewRole.hidden = true;
+  viewBio.hidden = true;
+  document.querySelector('.hero-meta').hidden = true;
+  heroEditFields.hidden = false;
+
+  avatarEditBtn.hidden = false;
+  document.querySelectorAll('.chip-remove').forEach(btn => btn.hidden = false);
+  document.getElementById('addTechChipBtn').hidden = false;
+
+  editBtn.textContent = 'Save';
+  cancelBtn.hidden = false;
+}
+
+function exitEditMode(commit) {
+  if (commit) {
+    const u = editUsername.value.trim();
+    viewUsername.textContent = u.startsWith('@') ? u : `@${u}`;
+    viewRole.textContent = editRole.value.trim();
+    viewBio.textContent = editBio.value.trim();
+    viewLocation.textContent = editLocation.value.trim();
+  } else if (snapshot) {
+    viewUsername.textContent = snapshot.username;
+    viewRole.textContent = snapshot.role;
+    viewBio.textContent = snapshot.bio;
+    viewLocation.textContent = snapshot.location;
+    heroAvatarPic.src = snapshot.avatarSrc;
+  }
+
+  viewUsername.hidden = false;
+  viewRole.hidden = false;
+  viewBio.hidden = false;
+  document.querySelector('.hero-meta').hidden = false;
+  heroEditFields.hidden = true;
+
+  avatarEditBtn.hidden = true;
+  document.querySelectorAll('.chip-remove').forEach(btn => btn.hidden = true);
+  document.getElementById('addTechChipBtn').hidden = true;
+
+  editBtn.textContent = 'Edit';
+  cancelBtn.hidden = true;
+  isEditing = false;
+}
+
+editBtn.addEventListener('click', () => {
+  if (!isEditing) {
+    enterEditMode();
+  } else {
+    exitEditMode(true);
+  }
+});
+
+cancelBtn.addEventListener('click', () => exitEditMode(false));
+
+/* Avatar swap — preview only, in-memory (no upload endpoint yet) */
+avatarEditBtn.addEventListener('click', () => avatarFileInput.click());
+avatarFileInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => { heroAvatarPic.src = ev.target.result; };
+  reader.readAsDataURL(file);
+});
+
+/* Tech chip remove (edit mode only) */
+document.querySelectorAll('.chip-remove').forEach(btn => {
+  btn.addEventListener('click', () => btn.closest('.tech-chip').remove());
+});
+
+/* Tech chip add (edit mode only) */
+document.getElementById('addTechChipBtn').addEventListener('click', () => {
+  const name = prompt('Add a technology:');
+  if (!name || !name.trim()) return;
+  const chip = document.createElement('span');
+  chip.className = 'tech-chip';
+  chip.innerHTML = `<span aria-hidden="true"></span>${name.trim()}<button class="chip-remove" aria-label="Remove"><svg width="10" height="10"><use href="#icon-x"></use></svg></button>`;
+  chip.querySelector('.chip-remove').addEventListener('click', () => chip.remove());
+  document.getElementById('addTechChipBtn').before(chip);
+});
+
+/* Online status toggle */
+const statusToggle = document.getElementById('statusToggleCheckbox');
+const statusDot = document.getElementById('heroStatusDot');
+statusToggle.addEventListener('change', () => {
+  statusDot.classList.toggle('offline', !statusToggle.checked);
+});
+
+/* Menu items — keyboard activation for role="button" rows */
+document.querySelectorAll('[role="button"]').forEach(el => {
+  el.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+</script>
+
+</body>
+
+</html>
