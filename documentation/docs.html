@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation • Infinity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="docs.css">
+</head>
+
+<body>
+
+<svg style="display:none">
+  <symbol id="icon-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 12c2.4-3.2 4.8-5 7.5-5 2.5 0 4 2 4 5s-1.5 5-4 5c-2.7 0-5.1-1.8-7.5-5-2.4 3.2-4.8 5-7.5 5-2.5 0-4-2-4-5s1.5-5 4-5c2.7 0 5.1 1.8 7.5 5z"/>
+  </symbol>
+  <symbol id="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </symbol>
+  <symbol id="icon-home" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 11h3v10h5v-6h2v6h5V11h3z"/></symbol>
+  <symbol id="icon-post" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  <symbol id="icon-profile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>
+  </symbol>
+  <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.7l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.7-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.7.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.7 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.7.3H9A1.6 1.6 0 0 0 10 3.2V3a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.7-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.7V9c0 .7.4 1.3 1 1.5h.2a2 2 0 1 1 0 4H20a1.6 1.6 0 0 0-.6.5"/>
+  </symbol>
+  <symbol id="icon-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+  <symbol id="icon-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="icon-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 5.79L21 10.27l-5.61 2.48L12 18.77l-3.39-6.02L3 10.27l6.61-2.48L12 2z"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="icon-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></symbol>
+  <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></symbol>
+</svg>
+
+<div class="app-shell">
+
+  <div class="sidebar-overlay" id="sidebarBackdrop"></div>
+
+  <aside class="sidebar" id="sidebarDrawer">
+    <header class="sidebar-header">
+      <div class="sidebar-brand">
+        <span class="brand-logo"><svg width="24" height="24"><use href="#icon-brand"></use></svg></span>
+        <div><h2>Infinity</h2></div>
+      </div>
+      <button class="icon-btn" id="closeSidebarBtn" aria-label="Close menu">
+        <svg width="20" height="20"><use href="#icon-close"></use></svg>
+      </button>
+    </header>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-link" href="/homepage.html">
+        <svg width="20" height="20"><use href="#icon-home"></use></svg><span>Feeds</span>
+      </a>
+      <a class="sidebar-link" href="/resources/resources.html">
+        <svg width="20" height="20"><use href="#icon-post"></use></svg><span>Create Post</span>
+      </a>
+      <a class="sidebar-link" href="/profile/profile.html">
+        <svg width="20" height="20"><use href="#icon-profile"></use></svg><span>Profile</span>
+      </a>
+      <a class="sidebar-link" href="/bookmarks/bookmarks.html">
+        <svg width="20" height="20"><use href="#icon-bookmark"></use></svg><span>Bookmarks</span>
+      </a>
+      <a class="sidebar-link" href="/snippets/snippets.html">
+        <svg width="20" height="20"><use href="#icon-code"></use></svg><span>Snippets</span>
+      </a>
+      <a class="sidebar-link" href="/jobs/jobs.html">
+        <svg width="20" height="20"><use href="#icon-briefcase"></use></svg><span>Jobs</span>
+      </a>
+      <a class="sidebar-link pro-link" href="/pro/pro.html">
+        <svg width="20" height="20"><use href="#icon-spark"></use></svg><span>Upgrade to Pro</span>
+      </a>
+
+      <div class="sidebar-divider"></div>
+
+      <a class="sidebar-link" href="/settings/settings.html">
+        <svg width="20" height="20"><use href="#icon-settings"></use></svg><span>Settings</span>
+      </a>
+      <a class="sidebar-link" href="/legal/privacy.html">
+        <svg width="20" height="20"><use href="#icon-shield"></use></svg><span>Privacy Policy</span>
+      </a>
+      <a class="sidebar-link" href="/legal/terms.html">
+        <svg width="20" height="20"><use href="#icon-file-text"></use></svg><span>Terms Of Service</span>
+      </a>
+      <a class="sidebar-link active" href="/docs/docs.html">
+        <svg width="20" height="20"><use href="#icon-book"></use></svg><span>Documentation</span>
+      </a>
+      <a class="sidebar-link" href="/contact/contact.html">
+        <svg width="20" height="20"><use href="#icon-mail"></use></svg><span>Contact</span>
+      </a>
+      <a class="sidebar-link" href="/about/about.html">
+        <svg width="20" height="20"><use href="#icon-info"></use></svg><span>About</span>
+      </a>
+    </nav>
+  </aside>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn" id="hamburger-menu" aria-label="Open menu">
+        <svg width="22" height="22"><use href="#icon-hamburger"></use></svg>
+      </button>
+      <div class="brand">
+        <span class="brand-title">Infinity</span>
+        <span class="brand-tag"><svg width="26" height="26"><use href="#icon-brand"></use></svg></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       DOCS — man-page framing
+  ============================================================ -->
+  <main class="docs-page">
+
+    <!-- Terminal header, consistent with About -->
+    <section class="terminal">
+      <div class="terminal-bar">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+        <span class="terminal-path">infinityhub.dev</span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-line">
+          <span class="prompt">$</span>
+          <span class="typed">docs infinity</span>
+          <span class="cursor"></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="man-layout">
+
+      <!-- Sticky section jump list -->
+      <nav class="man-toc">
+        <span class="man-toc-title">SECTIONS</span>
+        <a href="#name">NAME</a>
+        <a href="#synopsis">SYNOPSIS</a>
+        <a href="#description">DESCRIPTION</a>
+        <a href="#getting-started">GETTING STARTED</a>
+        <a href="#feeds">FEEDS(1)</a>
+        <a href="#snippets">SNIPPETS(1)</a>
+        <a href="#bookmarks">BOOKMARKS(1)</a>
+        <a href="#jobs">JOBS(1)</a>
+        <a href="#pro">PRO(1)</a>
+        <a href="#account">ACCOUNT(1)</a>
+        <a href="#see-also">SEE ALSO</a>
+      </nav>
+
+      <article class="man-page">
+
+        <section id="name" class="man-section">
+          <h2 class="man-heading">NAME</h2>
+          <p class="man-body"><span class="man-cmd">infinity</span> — a social network for programmers _<small>Built for devs by devs</small></p>
+        </section>
+
+        <section id="synopsis" class="man-section">
+          <h2 class="man-heading">SYNOPSIS</h2>
+          <pre class="man-pre">infinity [feeds|snippets|bookmarks|jobs] [--pro]</pre>
+        </section>
+
+        <section id="description" class="man-section">
+          <h2 class="man-heading">DESCRIPTION</h2>
+          <p class="man-body">
+            Infinity combines a discussion feed with a code snippet library for developers.
+
+It’s designed to reduce context switching so you can learn from conversations and reuse code without leaving the app.
+
+This document explains each feature and how to use it.
+          </p>
+        </section>
+
+        <section id="getting-started" class="man-section">
+          <h2 class="man-heading">GETTING STARTED</h2>
+          <ol class="man-steps">
+            <li><span class="step-n">1.</span> Create an account from the login page, or sign in if you already have one.</li>
+            <li><span class="step-n">2.</span> Fill out your profile — a bio and avatar help people recognize you easily.</li>
+            <li><span class="step-n">3.</span> Post something. A question, a code snippet, a video or even resources— whatever can help.</li>
+            <li><span class="step-n">4.</span> Follow a few people from the feed to shape what shows up next time.</li>
+          </ol>
+        </section>
+
+        <section id="feeds" class="man-section">
+          <h2 class="man-heading">FEEDS(1)</h2>
+          <p class="man-body">The default view. Posts are ranked by votes and algorithms based decisions.</p>
+          <dl class="man-flags">
+            <div class="flag-row"><dt>▲ / ▼</dt><dd>upvote or downvote a post — affects its rank in the feed</dd></div>
+            <div class="flag-row"><dt>comment</dt><dd>reply in a threaded discussion under the post</dd></div>
+            <div class="flag-row"><dt>save</dt><dd>bookmark a post to view later</dd></div>
+            <div class="flag-row"><dt>share</dt><dd>forward posts you like to friends</dd></div>
+          </dl>
+        </section>
+
+        <section id="snippets" class="man-section">
+          <h2 class="man-heading">RESOURCES</h2>
+          <p class="man-body">
+            This is basically posts uploaded by others which appears in the feeds section. You can upload pictures, videos,files,and choose your title or description.
+          </p>
+          <dl class="man-flags">
+                        <div class="flag-row"><dt>Title</dt><dd>These can affect what search index you get.</dd></div>
+            <div class="flag-row"><dt>Images / Videos</dt><dd>Add images and videos to your posts for reference purposes.</dd></div>
+            <div class="flag-row"><dt>File</dt><dd>Upload files with your resources for reference purposes.</dd></div>
+          </dl>
+          <p class="man-warn">
+            Don't paste API keys, tokens, or credentials into a snippet — once posted,
+            it's public. See Privacy Policy for details.
+          </p>
+        </section>
+
+        <section id="bookmarks" class="man-section">
+          <h2 class="man-heading">BOOKMARKS(1)</h2>
+          <p class="man-body">
+            Anything you save from Feeds, Snippets, or Jobs collects here in one list,
+            most recent first. Saving doesn't notify the original author.
+          </p>
+        </section>
+
+        <section id="jobs" class="man-section">
+          <h2 class="man-heading">JOBS(1)</h2>
+          <p class="man-body">
+            A listings board scoped to dev roles. Post an opening from the same
+            Create Post flow used for regular posts — Jobs is a category, not a
+            separate form.
+          </p>
+        </section>
+
+        <section id="pro" class="man-section">
+          <h2 class="man-heading">PRO(1)</h2>
+          <p class="man-body">
+            An optional upgrade. Details on what it currently unlocks live on the
+            Pro page linked from the sidebar — this doc will get a real flag list
+            once that feature set is finalized.
+          </p>
+        </section>
+
+        <section id="account" class="man-section">
+          <h2 class="man-heading">ACCOUNT(1)</h2>
+          <p class="man-body">
+            Profile details, password, and notification preferences live under
+            Settings. Data handling and deletion requests are covered in the
+            Privacy Policy, not here.
+          </p>
+        </section>
+
+        <section id="see-also" class="man-section">
+          <h2 class="man-heading">SEE ALSO</h2>
+          <ul class="man-links">
+            <li><a href="/legal/privacy.html" class="man-link">privacy(7)</a></li>
+            <li><a href="/legal/terms.html" class="man-link">terms(7)</a></li>
+            <li><a href="/contact/contact.html" class="man-link">contact(1)</a></li>
+            <li><a href="/about/about.html" class="man-link">about(1)</a></li>
+          </ul>
+        </section>
+
+      </article>
+    </div>
+  </main>
+
+</div>
+
+<script>
+const sidebar  = document.getElementById("sidebarDrawer");
+const backdrop = document.getElementById("sidebarBackdrop");
+const openBtn  = document.getElementById("hamburger-menu");
+const closeBtn = document.getElementById("closeSidebarBtn");
+
+function openSidebar() {
+  sidebar.classList.add("open");
+  backdrop.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function closeSidebar() {
+  sidebar.classList.remove("open");
+  backdrop.classList.remove("show");
+  document.body.style.overflow = "";
+}
+openBtn.addEventListener("click", openSidebar);
+closeBtn.addEventListener("click", closeSidebar);
+backdrop.addEventListener("click", closeSidebar);
+</script>
+<script>
+  const post = [
+    {title:"sen",age:7},
+    {title:"sens",age:17},
+    {title:"sensa",age:170}
+  ];
+  console.log(`title of 2nd post is ${post[1].title} while last post likes is ${post[2].age} and length is ${post.length} `);
+post.push({title:"infinity", age:999});
+console.log(post.length);
+</script>
+</body>
+</html>
