@@ -1,0 +1,682 @@
+/* ==========================================================================
+   Infinity — Profile Page
+   Self-contained: no dependency on homepage.css or any other stylesheet.
+   ========================================================================== */
+
+:root {
+  --bg:          #111113;
+  --surface:     #19191c;
+  --surface-2:   #1e1e22;
+  --surface-3:   #26262b;
+
+  --border:       #333338;
+  --border-light: rgba(255, 255, 255, 0.06);
+
+  --text:   #f5f5f7;
+  --text-2: #c7c7cd;
+  --text-3: #96969e;
+  --text-4: #6a6a72;
+
+  --accent:       #38bdf8;
+  --accent-hover: #7dd3fc;
+  --accent-dim:   rgba(56, 189, 248, 0.1);
+  --accent-ring:  rgba(56, 189, 248, 0.22);
+
+  --green: #22c55e;
+  --gold:  #FFD700;
+  --red:   #f87171;
+
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-pill: 999px;
+
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+
+  --speed: 0.22s;
+  --ease:  cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================
+   PANEL SHELL
+========================================================== */
+
+.profile-panel {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.pp-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: rgba(17, 17, 19, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.pp-back-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.pp-back-btn a {
+  color: inherit;
+  display: flex;
+}
+
+.pp-back-btn:hover { background: var(--surface); color: var(--accent); }
+
+.pp-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.pp-edit-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pp-edit-btn {
+  border: 1px solid var(--accent-ring);
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--speed) var(--ease);
+}
+
+.pp-edit-btn:hover { background: rgba(56, 189, 248, 0.18); }
+
+.pp-cancel-btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--speed) var(--ease), color var(--speed) var(--ease);
+}
+
+.pp-cancel-btn:hover { background: var(--surface); color: var(--text-2); }
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+.pp-body {
+  padding: 16px 16px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ==========================================================
+   HERO CARD
+========================================================== */
+
+.profile-hero-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% -10%, rgba(56, 189, 248, 0.14), transparent 60%);
+  pointer-events: none;
+}
+
+.hero-avatar-wrapper {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 14px;
+}
+
+.hero-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--accent-ring);
+  display: block;
+}
+
+.hero-status-dot {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 3px solid var(--surface);
+}
+
+.hero-status-dot.offline {
+  background: var(--text-4);
+}
+
+.avatar-edit-overlay {
+  position: absolute;
+  bottom: -2px;
+  left: -2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #051016;
+  border: 2px solid var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.avatar-edit-overlay:hover { background: var(--accent-hover); }
+
+.hero-username {
+  position: relative;
+  z-index: 1;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  margin-bottom: 4px;
+}
+
+.hero-role {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.hero-bio {
+  position: relative;
+  z-index: 1;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+  max-width: 340px;
+  margin-bottom: 14px;
+}
+
+.hero-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+.meta-item svg { flex-shrink: 0; color: var(--text-4); }
+
+/* ==========================================================
+   EDIT FIELDS
+========================================================== */
+
+.hero-edit-fields {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+.edit-row {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.edit-row label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-4);
+}
+
+.edit-input {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  font-family: var(--font);
+  font-size: 13.5px;
+  color: var(--text);
+  outline: none;
+  transition: border-color var(--speed) var(--ease);
+}
+
+.edit-input:focus { border-color: var(--accent-ring); }
+
+.edit-textarea {
+  resize: vertical;
+  line-height: 1.5;
+  min-height: 60px;
+}
+
+/* ==========================================================
+   TECH STACK CHIPS
+========================================================== */
+
+.tech-stack {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tech-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 5px 12px;
+}
+
+.chip-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border: none;
+  background: transparent;
+  color: var(--text-4);
+  cursor: pointer;
+  padding: 0;
+}
+
+.chip-remove:hover { color: var(--red); }
+
+.tech-chip-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1px dashed var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: border-color var(--speed) var(--ease), color var(--speed) var(--ease);
+}
+
+.tech-chip-add:hover { border-color: var(--accent-ring); color: var(--accent); }
+
+/* ==========================================================
+   AURA BADGE
+========================================================== */
+
+.infinity-score-badge {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.28);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+}
+
+.badge-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.badge-text {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--gold);
+}
+
+.badge-text strong { font-weight: 800; }
+
+/* ==========================================================
+   STATS GRID
+========================================================== */
+
+.profile-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.stat-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.stat-unit {
+  font-size: 12px;
+  color: var(--text-3);
+  font-weight: 600;
+}
+
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-4);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================================
+   PROFILE VIEWS CARD
+========================================================== */
+
+.views-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px 18px 16px;
+}
+
+.views-total-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 10px 0 12px;
+  color: var(--accent);
+}
+
+.views-total-row svg { color: var(--text-4); margin-right: -2px; }
+
+.views-total {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.views-total-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+.views-chart-wrap {
+  position: relative;
+  height: 140px;
+  margin: 4px 0 10px;
+}
+
+.views-footnote {
+  font-size: 11px;
+  color: var(--text-4);
+  line-height: 1.5;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-light);
+}
+
+/* ==========================================================
+   RESOURCES / ACTIVITY CARD
+========================================================== */
+
+.resources-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  text-align: center;
+}
+
+.resources-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  text-align: left;
+}
+
+.resources-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.resources-caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-4);
+}
+
+.laugh {
+  font-size: 28px;
+  margin: 14px 0 6px;
+}
+
+.resources-card > span {
+  display: block;
+  font-size: 13px;
+  color: var(--text-3);
+  margin-bottom: 12px;
+}
+
+.dashboard-link {
+  font-size: 12px;
+  color: var(--text-4);
+}
+
+.dashboard-text {
+  color: var(--accent);
+}
+
+/* ==========================================================
+   MENU LIST
+========================================================== */
+
+.profile-menu-list {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: background var(--speed) var(--ease);
+}
+
+.menu-item:last-child { border-bottom: none; }
+.menu-item:hover { background: var(--surface-2); }
+
+.menu-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.menu-item-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--surface-3);
+  color: var(--text-3);
+}
+
+.status-dot-icon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.logout-item .menu-item-left { color: var(--red); }
+.logout-item .menu-item-icon { color: var(--red); }
+
+/* ==========================================================
+   TOGGLE SWITCH
+========================================================== */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--surface-3);
+  border: 1px solid var(--border);
+  transition: var(--speed) var(--ease);
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background: var(--text-3);
+  border-radius: 50%;
+  transition: var(--speed) var(--ease);
+}
+
+.switch input:checked + .slider {
+  background: var(--accent-dim);
+  border-color: var(--accent-ring);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(18px);
+  background: var(--accent);
+}
+
+.slider.round { border-radius: var(--radius-pill); }
+.slider.round::before { border-radius: 50%; }
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (min-width: 640px) {
+  .profile-panel { max-width: 620px; }
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar { width: 6px; }
+
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: var(--radius-pill);
+}
