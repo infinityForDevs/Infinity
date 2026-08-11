@@ -1,0 +1,357 @@
+ :root {
+      --bg-color: #111113;
+      --card-bg: #19191c;
+      --primary-blue: #38bdf8;
+      --primary-hover: #7dd3fc;
+      --text-main: #f5f5f7;
+      --text-muted: #96969e;
+      --input-bg: #1e1e22;
+      --input-border: #333338;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .signup-card {
+      background-color: var(--card-bg);
+      width: 100%;
+      max-width: 440px;
+      border-radius: 24px;
+      padding: 32px;
+      border: 1px solid #2a2a2f;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Brand Header */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .brand-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-name {
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Top Stats / Progress Section */
+    .wizard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .progress-bars {
+      display: flex;
+      gap: 6px;
+    }
+
+    .bar {
+      width: 32px;
+      height: 6px;
+      border-radius: 3px;
+      background-color: #2a2a2f;
+      transition: background-color 0.3s ease;
+    }
+
+    .bar.active {
+      background-color: var(--primary-blue);
+    }
+
+    .step-counter {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Typography */
+    .step-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-subtitle {
+      font-size: 15px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+  /* Container styling to center and space the element */
+.or-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 32px 0; /* Adjust spacing above and below to match your layout */
+
+  /* Text styling matching the muted, clean aesthetic */
+  color: #96969e; /* Muted neutral-gray text color */
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Creating the lines on the left and right */
+.or-divider::before,
+.or-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #333338; /* Subtle dark-mode line color */
+}
+
+/* Spacing between the lines and the text */
+.or-divider::before {
+  margin-right: 16px;
+}
+
+.or-divider::after {
+  margin-left: 16px;
+}
+/* Container holding both buttons side-by-side */
+.social-auth-container {
+  display: flex;
+  gap: 12px; /* Gap between the two buttons */
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Base styling for both buttons */
+.social-btn {
+  flex: 1; /* Makes both buttons take up equal width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Space between icon and text */
+
+  /* Blending into your dark theme */
+  background-color: #1a1a1d; /* Slightly lighter than card background */
+  border: 1px solid #333338; /* Subtle border matching input fields */
+  border-radius: 14px; /* Curve matching your layout design */
+  padding: 14px 16px;
+
+  /* Text styles */
+  color: #f5f5f7;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Subtle hover state effect */
+.social-btn:hover {
+  background-color: #222226;
+  border-color: #3a3a40;
+}
+
+/* SVG Size configurations */
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* Specific color override for GitHub icon to match dark mode */
+.icon-github {
+  color: #f5f5f7;
+}
+
+    /* Form Elements */
+    .form-step {
+      display: none;
+    }
+
+    .form-step.active {
+      display: block;
+    }
+
+    .input-group {
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .form-control {
+      width: 100%;
+      background-color: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: 14px;
+      padding: 16px;
+      color: var(--text-main);
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-blue);
+    }
+
+    select.form-control {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .select-wrapper::after {
+      content: '▾';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* Password Toggle Icon */
+    .password-toggle {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      padding: 16px 24px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.2s ease, opacity 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-blue);
+      color: #051016;
+      flex-grow: 1;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 1px solid var(--input-border);
+      color: var(--text-muted);
+      min-width: 100px;
+    }
+
+    .btn-secondary:hover {
+      background-color: #1e1e22;
+      color: var(--text-main);
+    }
+
+    /* Footer Links */
+    .footer-links {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .signin-text {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .signin-text a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .legal-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .legal-text a {
+      color: var(--text-muted);
+      text-decoration: underline;
+    }
+
+    /* Hexagon Loading Overlay styles */
+    .loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(17, 17, 19, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .loading-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hexagon-path {
+      stroke: #f5f5f7;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      animation: traceHexagon 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes traceHexagon {
+      0% {
+        stroke-dashoffset: 100;
+      }
+      50% {
+        stroke-dashoffset: 0;
+      }
+      100% {
+        stroke-dashoffset: -100;
+      }
+    }
