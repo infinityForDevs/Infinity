@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Homepage • Infinity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="homepage.css">
+</head>
+
+<body>
+
+<svg style="display:none">
+  <symbol id="icon-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 12c2.4-3.2 4.8-5 7.5-5 2.5 0 4 2 4 5s-1.5 5-4 5c-2.7 0-5.1-1.8-7.5-5-2.4 3.2-4.8 5-7.5 5-2.5 0-4-2-4-5s1.5-5 4-5c2.7 0 5.1 1.8 7.5 5z"/>
+  </symbol>
+  <symbol id="icon-hamburger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </symbol>
+  <symbol id="icon-home" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L3 11h3v10h5v-6h2v6h5V11h3z"/></symbol>
+  <symbol id="icon-post" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  <symbol id="icon-profile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/>
+  </symbol>
+  <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.7l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.7-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.7.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.7 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.7.3H9A1.6 1.6 0 0 0 10 3.2V3a2 2 0 1 1 4 0v.2a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.7-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.7V9c0 .7.4 1.3 1 1.5h.2a2 2 0 1 1 0 4H20a1.6 1.6 0 0 0-.6.5"/>
+  </symbol>
+  <symbol id="icon-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+  <symbol id="icon-briefcase" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="icon-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 5.79L21 10.27l-5.61 2.48L12 18.77l-3.39-6.02L3 10.27l6.61-2.48L12 2z"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="icon-file-text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></symbol>
+  <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></symbol>
+  <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></symbol>
+  <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/>
+  </symbol>
+  <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </symbol>
+  <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+    <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/>
+  </symbol>
+  <symbol id="icon-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+  </symbol>
+  <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+  </symbol>
+</svg>
+
+<div class="app-shell">
+
+  <div class="sidebar-overlay" id="sidebarBackdrop"></div>
+
+  <aside class="sidebar" id="sidebarDrawer">
+    <header class="sidebar-header">
+      <div class="sidebar-brand">
+        <span class="brand-logo"><svg width="24" height="24"><use href="#icon-brand"></use></svg></span>
+        <div><h2>Infinity</h2></div>
+      </div>
+      <button class="icon-btn" id="closeSidebarBtn" aria-label="Close menu">
+        <svg width="20" height="20"><use href="#icon-close"></use></svg>
+      </button>
+    </header>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-link active" href="/homepage/homepage.html">
+        <svg width="20" height="20"><use href="#icon-home"></use></svg><span>Homepage</span>
+      </a>
+      <a class="sidebar-link" href="/resources/resources.html">
+        <svg width="20" height="20"><use href="#icon-post"></use></svg><span>Create Post</span>
+      </a>
+      <a class="sidebar-link" href="/profile/profile.html">
+        <svg width="20" height="20"><use href="#icon-profile"></use></svg><span>Profile</span>
+      </a>
+      <a class="sidebar-link" href="/bookmarks/bookmarks.html">
+        <svg width="20" height="20"><use href="#icon-bookmark"></use></svg><span>Bookmarks</span>
+      </a>
+
+      <div class="sidebar-divider"></div>
+
+      <a class="sidebar-link" href="/settings/settings.html">
+        <svg width="20" height="20"><use href="#icon-settings"></use></svg><span>Settings</span>
+      </a>
+    
+    </nav>
+  </aside>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn" id="hamburger-menu" aria-label="Open menu">
+        <svg width="22" height="22"><use href="#icon-hamburger"></use></svg>
+      </button>
+      <div class="brand">
+        <span class="brand-title">Infinity</span>
+        <span class="brand-tag"><svg width="26" height="26"><use href="#icon-brand"></use></svg></span>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <a href="/resources/resources.html">
+        <button class="icon-btn" aria-label="Create post">
+          <svg width="20" height="20"><use href="#icon-post"></use></svg>
+        </button>
+      </a>
+      <a href="/notifications/notifications.html">
+        <button class="icon-btn" aria-label="Notifications">
+          <svg width="20" height="20"><use href="#icon-bell"></use></svg>
+        </button>
+      </a>
+      <a href="/profile/profile.html">
+        <img src="../assets/IMG-20260702-WA0032.jpg" class="avatar" alt="Profile">
+      </a>
+    </div>
+  </header>
+
+  <section class="search-section">
+    <nav class="computer-nav">
+      <a class="computer-link" href="/homepage.html">
+        <svg width="18" height="18"><use href="#icon-home"></use></svg><span>Home</span>
+      </a>
+      <a class="computer-link active" href="/snippets/snippets.html">
+        <svg width="18" height="18"><use href="#icon-code"></use></svg><span>Snippets</span>
+      </a>
+      <a class="computer-link" href="/profile/profile.html">
+        <svg width="18" height="18"><use href="#icon-profile"></use></svg><span>Profile</span>
+      </a>
+      <a class="computer-link" href="/settings/settings.html">
+        <svg width="18" height="18"><use href="#icon-settings"></use></svg><span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="search-box">
+      <svg width="16" height="16"><use href="#icon-search"></use></svg>
+      <input type="text" placeholder="search anything..
+      ">
+    </div>
+  </section>
+
+  <nav class="feed-tabs snippet-lang-tabs">
+    <button class="tab active">All</button>
+    <button class="tab">Trending</button>
+    <button class="tab">Videos</button>
+  </nav>
+
+  <!-- ============================================================
+        FEED
+  ============================================================ -->
+  <main class="feed snippet-feed">
+
+    <article class="post-card snippet-card">
+      <header class="post-header">
+        <div class="post-author">
+          <img src="../assets/IMG-20260702-WA0032.jpg" class="profile-avatar" alt="">
+          <div>
+            <div class="profile-name">sensa</div>
+            <div class="post-meta">40m ago</div>
+          </div>
+        </div>
+        <div class="post-options">
+          <button class="follow-btn">Recommend</button>
+        </div>
+      </header>
+
+      <section class="post-content">
+        <h1 class="post-title">Debounce hook that actually cancels on unmount</h1>
+        <p class="post-description">
+          Ran into stale closures with the usual debounce hook pattern. This version
+          clears the timeout on unmount and re-creates it only when the delay changes.
+        </p>
+      </section>
+
+      <div class="code-block">
+        <div class="code-block-header">
+          <span class="code-filename">useDebounce.js</span>
+<div class="code-options">
+                      <button class="run-btn" aria-label="run code">
+            <span>Run</span>
+          </button>
+          <button class="copy-btn" aria-label="Copy code">
+            <svg width="14" height="14"><use href="#icon-copy"></use></svg>
+            <span>Copy</span>
+          </button>
+</div>
+        </div>
+        <pre class="code-pre"><code>function useDebounce(value, delay) {
+  const [debounced, setDebounced] = useState(value);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebounced(value), delay);
+    return () => clearTimeout(timer);
+  }, [value, delay]);
+
+  return debounced;
+}</code></pre>
+      </div>
+
+      <footer class="post-footer">
+        <div class="vote-box">
+          <button class="vote-btn upvote" aria-label="Upvote">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5l7 9H5z"/></svg>
+          </button>
+          <span class="vote-count">312</span>
+          <button class="vote-btn downvote" aria-label="Downvote">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 19L5 10h14z"/></svg>
+          </button>
+        </div>
+
+        <button class="action-btn comment-toggle-btn">
+          <svg width="16" height="16"><use href="#icon-message"></use></svg><span>28</span>
+        </button>
+        <button class="action-btn">
+          <svg width="16" height="16"><use href="#icon-share"></use></svg><span>4</span>
+        </button>
+        <button class="action-btn favorite-btn">
+          <svg width="16" height="16"><use href="#icon-save"></use></svg><span>61</span>
+        </button>
+      </footer>
+
+      <section class="comments-section" hidden>
+        <div class="comments-list">
+          <div class="comment">
+            <img src="../assets/IMG-20260702-WA0032.jpg" class="comment-avatar" alt="">
+            <div class="comment-body">
+              <div class="comment-header">
+                <span class="comment-author">rowan_dev</span>
+                <span class="comment-time">22m ago</span>
+              </div>
+              <p class="comment-text">This saved me from a nasty memory leak, thank you!</p>
+              <div class="comment-actions">
+                <button class="comment-reply-btn">Reply</button>
+              </div>
+              <div class="replies"></div>
+            </div>
+          </div>
+          <div class="comment">
+            <img src="../assets/IMG-20260702-WA0032.jpg" class="comment-avatar" alt="">
+            <div class="comment-body">
+              <div class="comment-header">
+                <span class="comment-author">t.izzy</span>
+                <span class="comment-time">1h ago</span>
+              </div>
+              <p class="comment-text">Would this need a ref if delay changes mid-timeout?</p>
+              <div class="comment-actions">
+                <button class="comment-reply-btn">Reply</button>
+              </div>
+              <div class="replies">
+                <div class="comment reply">
+                  <img src="../assets/IMG-20260702-WA0032.jpg" class="comment-avatar" alt="">
+                  <div class="comment-body">
+                    <div class="comment-header">
+                      <span class="comment-author">sensa</span>
+                      <span class="comment-time">40m ago</span>
+                    </div>
+                    <p class="comment-text">Nope, the effect re-runs and clears the old timeout automatically.</p>
+                    <div class="comment-actions">
+                      <button class="comment-reply-btn">Reply</button>
+                    </div>
+                    <div class="replies"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="comment-form">
+          <img src="../assets/IMG-20260702-WA0032.jpg" class="comment-avatar" alt="">
+          <input type="text" class="comment-input" placeholder="Add a comment..." aria-label="Add a comment">
+          <button type="submit" class="comment-submit">Post</button>
+        </form>
+      </section>
+    </article>
+
+    <article class="post-card snippet-card">
+      <header class="post-header">
+        <div class="post-author">
+          <img src="../assets/IMG-20260702-WA0032.jpg" class="profile-avatar" alt="">
+          <div>
+            <div class="profile-name">sensa</div>
+            <div class="post-meta">3h ago</div>
+          </div>
+        </div>
+        <div class="post-options">
+          <button class="follow-btn">Recommend</button>
+        </div>
+      </header>
+
+      <section class="post-content">
+        <h1 class="post-title">One-liner to flatten a nested list of any depth</h1>
+        <p class="post-description">
+          No imports needed. Recursive generator, works on arbitrarily nested lists/tuples.
+        </p>
+      </section>
+
+      <div class="code-block">
+        <div class="code-block-header">
+          <span class="code-filename">flatten.py</span>
+<div class="code-options">
+                                <button class="run-btn" aria-label="run code">
+            <span>Run</span>
+          </button>
+          <button class="copy-btn" aria-label="Copy code">
+            <svg width="14" height="14"><use href="#icon-copy"></use></svg>
+            <span>Copy</span>
+          </button>
+</div>
+        </div>
+        <pre class="code-pre"><code>def flatten(nested):
+    for item in nested:
+        if isinstance(item, (list, tuple)):
+            yield from flatten(item)
+        else:
+            yield item</code></pre>
+      </div>
+
+      <footer class="post-footer">
+        <div class="vote-box">
+          <button class="vote-btn upvote" aria-label="Upvote">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5l7 9H5z"/></svg>
+          </button>
+          <span class="vote-count">1.1k</span>
+          <button class="vote-btn downvote" aria-label="Downvote">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 19L5 10h14z"/></svg>
+          </button>
+        </div>
+
+        <button class="action-btn comment-toggle-btn">
+          <svg width="16" height="16"><use href="#icon-message"></use></svg><span>52</span>
+        </button>
+        <button class="action-btn">
+          <svg width="16" height="16"><use href="#icon-share"></use></svg><span>9</span>
+        </button>
+        <button class="action-btn favorite-btn">
+          <svg width="16" height="16"><use href="#icon-save"></use></svg><span>203</span>
+        </button>
+      </footer>
+
+      <section class="comments-section" hidden>
+        <div class="comments-list">
+          <div class="comment">
+            <img src="../assets/IMG-20260702-WA0032.jpg" class="comment-avatar" alt="">
+            <div class="comment-body">
+              <div class="comment-header">
+                <span class="comment-author">devon.k</span>
+                <span class="comment-time">2h ago</span>
+              </div>
+              <p class="comment-text">Clean. Using this in a config parser today.</p>
+              <div class="comment-actions">
+                <button class="comment-reply-btn">Reply</button>
+              </div>
+              <div class="replies"></div>
+            </div>
+          </div>
+        </div>
+        <form class="comment-form">
+          <img src="../assets/IMG-20260702-WA0032.jpg" class="comment-avatar" alt="">
+          <input type="text" class="comment-input" placeholder="Add a comment..." aria-label="Add a comment">
+          <button type="submit" class="comment-submit">Post</button>
+        </form>
+      </section>
+    </article>
+
+  </main>
+
+  <!-- FAB — same "add post" pattern as homepage -->
+  <a href="/resources/resources.html">
+    <button class="fab-create" id="add-post" aria-label="Create post">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </button>
+  </a>
+
+</div>
+
+<script>
+/* SIDEBAR */
+const sidebar  = document.getElementById("sidebarDrawer");
+const backdrop = document.getElementById("sidebarBackdrop");
+const openBtn  = document.getElementById("hamburger-menu");
+const closeBtn = document.getElementById("closeSidebarBtn");
+
+function openSidebar() {
+  sidebar.classList.add("open");
+  backdrop.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function closeSidebar() {
+  sidebar.classList.remove("open");
+  backdrop.classList.remove("show");
+  document.body.style.overflow = "";
+}
+openBtn.addEventListener("click", openSidebar);
+closeBtn.addEventListener("click", closeSidebar);
+backdrop.addEventListener("click", closeSidebar);
+
+/* LANGUAGE TABS */
+document.querySelectorAll(".snippet-lang-tabs .tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".snippet-lang-tabs .tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+  });
+});
+
+/* COPY BUTTON */
+document.querySelectorAll(".copy-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const code = btn.closest(".code-block").querySelector("code").innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      const label = btn.querySelector("span");
+      const originalText = label.textContent;
+      const originalIcon = btn.querySelector("svg use").getAttribute("href");
+      btn.querySelector("svg use").setAttribute("href", "#icon-check");
+      label.textContent = "Copied";
+      btn.classList.add("copied");
+      setTimeout(() => {
+        btn.querySelector("svg use").setAttribute("href", originalIcon);
+        label.textContent = originalText;
+        btn.classList.remove("copied");
+      }, 1500);
+    });
+  });
+});
+
+/* VOTE LOGIC */
+document.querySelectorAll('.vote-box').forEach(box => {
+  const upBtn   = box.querySelector('.upvote');
+  const downBtn = box.querySelector('.downvote');
+  const countEl = box.querySelector('.vote-count');
+  let count = parseCount(countEl.textContent);
+  let state = 0;
+
+  function parseCount(text) {
+    if (text.includes('k')) return Math.round(parseFloat(text) * 1000);
+    return parseInt(text, 10);
+  }
+  function fmt(n) { return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : n; }
+
+  upBtn.addEventListener('click', () => {
+    if      (state ===  1) { state = 0;  count--;    }
+    else if (state === -1) { state = 1;  count += 2; }
+    else                   { state = 1;  count++;    }
+    updateVote();
+  });
+
+  downBtn.addEventListener('click', () => {
+    if      (state === -1) { state = 0;  count++;    }
+    else if (state ===  1) { state = -1; count -= 2; }
+    else                   { state = -1; count--;    }
+    updateVote();
+  });
+
+  function updateVote() {
+    upBtn.classList.toggle('active',   state ===  1);
+    downBtn.classList.toggle('active', state === -1);
+    countEl.textContent = fmt(count);
+  }
+});
+
+/* FOLLOW TOGGLE */
+document.querySelectorAll('.follow-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const following = btn.textContent.trim() === 'Recommended';
+    btn.textContent      = following ? 'Recommend' : 'Recommended';
+    btn.style.background = following ? 'var(--accent)' : 'var(--green)';
+  });
+});
+
+/* FAVORITE (SAVE) TOGGLE — count goes up when favorited, back down when un-favorited */
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+  const countEl = btn.querySelector('span');
+  let count = parseInt(countEl.textContent, 10);
+
+  btn.addEventListener('click', () => {
+    const active = btn.classList.toggle('active');
+    count += active ? 1 : -1;
+    countEl.textContent = count;
+    btn.style.color = active ? 'var(--accent)' : 'var(--text-2)';
+  });
+});
+
+/* COMMENTS */
+function makeCommentEl({ author, time, text }) {
+  const wrap = document.createElement('div');
+  wrap.className = 'comment reply';
+  wrap.innerHTML = `
+    <img src="../assets/IMG-20260702-WA0032.jpg" class="comment-avatar" alt="">
+    <div class="comment-body">
+      <div class="comment-header">
+        <span class="comment-author">${author}</span>
+        <span class="comment-time">${time}</span>
+      </div>
+      <p class="comment-text"></p>
+      <div class="comment-actions">
+        <button class="comment-reply-btn">Reply</button>
+      </div>
+      <div class="replies"></div>
+    </div>`;
+  wrap.querySelector('.comment-text').textContent = text; // safe text insert
+  return wrap;
+}
+
+function bumpCommentCount(postCard, delta) {
+  const commentBtn = postCard.querySelector('.comment-toggle-btn span');
+  commentBtn.textContent = parseInt(commentBtn.textContent, 10) + delta;
+}
+
+/* Toggle a post's comments section open/closed */
+document.querySelectorAll('.comment-toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('.post-card').querySelector('.comments-section');
+    section.hidden = !section.hidden;
+    btn.classList.toggle('active', !section.hidden);
+  });
+});
+
+/* Top-level "Add a comment" forms */
+document.querySelectorAll('.comment-form').forEach(form => {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const input = form.querySelector('.comment-input');
+    const text = input.value.trim();
+    if (!text) return;
+    const list = form.previousElementSibling; // .comments-list
+    const el = makeCommentEl({ author: 'you', time: 'just now', text });
+    el.classList.remove('reply');
+    list.appendChild(el);
+    input.value = '';
+    bumpCommentCount(form.closest('.post-card'), 1);
+  });
+});
+
+/* Reply buttons — open an inline reply box under the comment, nest the reply on submit */
+document.querySelector('.feed').addEventListener('click', e => {
+  const replyBtn = e.target.closest('.comment-reply-btn');
+  if (!replyBtn) return;
+
+  const commentBody = replyBtn.closest('.comment-body');
+  let replyForm = commentBody.querySelector(':scope > .reply-form');
+
+  if (replyForm) { replyForm.remove(); return; } // toggle off if already open
+
+  replyForm = document.createElement('form');
+  replyForm.className = 'comment-form reply-form';
+  replyForm.innerHTML = `
+    <img src="../assets/IMG-20260702-WA0032.jpg" class="comment-avatar" alt="">
+    <input type="text" class="comment-input" placeholder="Write a reply..." aria-label="Write a reply">
+    <button type="submit" class="comment-submit">Reply</button>`;
+  commentBody.querySelector(':scope > .comment-actions').after(replyForm);
+  replyForm.querySelector('.comment-input').focus();
+
+  replyForm.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const input = replyForm.querySelector('.comment-input');
+    const text = input.value.trim();
+    if (!text) return;
+    const repliesEl = commentBody.querySelector(':scope > .replies');
+    repliesEl.appendChild(makeCommentEl({ author: 'you', time: 'just now', text }));
+    bumpCommentCount(replyForm.closest('.post-card'), 1);
+    replyForm.remove();
+  });
+});
+
+/* FAB — hide on scroll down, show on scroll up */
+const fab = document.getElementById("add-post");
+let lastScrollY = window.scrollY;
+window.addEventListener("scroll", () => {
+  if (window.scrollY > lastScrollY && window.scrollY > 100) {
+    fab.style.transform = "scale(0) translateY(100px)";
+    fab.style.opacity   = "0";
+  } else {
+    fab.style.transform = "scale(1) translateY(0)";
+    fab.style.opacity   = "1";
+  }
+  lastScrollY = window.scrollY;
+});
+</script>
+
+</body>
+</html>
