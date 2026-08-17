@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile • Infinity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+
+<svg style="display:none">
+  <symbol id="icon-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 18l-6-6 6-6"/>
+  </symbol>
+  <symbol id="icon-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 20h9"/>
+    <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+  </symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/>
+  </symbol>
+  <symbol id="icon-play" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+    <path d="M7 4.5v15l13-7.5-13-7.5z"/>
+  </symbol>
+  <symbol id="icon-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 10v11"/>
+    <path d="M11 21h6.5a2 2 0 0 0 2-1.6l1.3-6.5a2 2 0 0 0-2-2.4H14V5a2.5 2.5 0 0 0-5 0v1.5L7 10v11z"/>
+  </symbol>
+  <symbol id="icon-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="5 7 10 12 5 17"/><line x1="12" y1="17" x2="19" y2="17"/>
+  </symbol>
+  <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="3"/>
+    <circle cx="8.5" cy="8.5" r="1.6"/>
+    <path d="M21 15l-5.2-5.2a2 2 0 0 0-2.8 0L3 19.9"/>
+  </symbol>
+  <symbol id="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/><polyline points="8 12.5 11 15.5 16.5 9"/>
+  </symbol>
+  <symbol id="icon-alert-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/><line x1="12" y1="7.5" x2="12" y2="13"/>
+    <circle cx="12" cy="16.5" r="0.15" fill="currentColor" stroke-width="2.6"/>
+  </symbol>
+  <symbol id="icon-info-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/><line x1="12" y1="10.5" x2="12" y2="16.5"/>
+    <circle cx="12" cy="7.3" r="0.15" fill="currentColor" stroke-width="2.6"/>
+  </symbol>
+</svg>
+
+<div class="app-shell" id="appShell">
+
+  <header class="topbar">
+    <button class="icon-btn" id="backBtn" aria-label="Go back">
+      <svg width="20" height="20"><use href="#icon-back"></use></svg>
+    </button>
+    <div class="topbar-title">Profile</div>
+    <div class="mini-avatar" id="miniAvatar"><span id="miniAvatarInitial">P</span></div>
+  </header>
+
+  <main class="profile-main">
+
+    <!-- Floating avatar orb -->
+    <section class="avatar-hero">
+      <div class="avatar-orb">
+        <div class="avatar-ring"></div>
+        <div class="avatar-circle" id="avatarCircle">
+          <span class="avatar-initial" id="avatarInitial">P</span>
+        </div>
+        <button class="avatar-edit-btn" id="avatarEditBtn" aria-label="Edit profile picture">
+          <svg width="15" height="15"><use href="#icon-pencil"></use></svg>
+        </button>
+      </div>
+      <div class="username-pill" id="usernamePill">@SensoTech</div>
+    </section>
+
+    <!-- Languages -->
+    <section class="lang-section">
+      <div class="lang-row" id="langRow">
+        <button class="lang-add-btn" id="langAddBtn" aria-label="Edit languages">
+          <svg width="15" height="15"><use href="#icon-plus"></use></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Recommend -->
+    <section class="recommend-section">
+      <button class="recommend-btn" id="recommendBtn">
+        <svg width="15" height="15"><use href="#icon-thumb"></use></svg>
+        <span id="recommendLabel">Recommend</span>
+      </button>
+    </section>
+
+    <!-- Code / console card -->
+    <section class="code-card">
+      <div class="code-card-head">
+        <span class="traffic-dots"></span>
+        <span class="code-filename">userProfile.js</span>
+        <button class="code-edit-btn" id="dataEditBtn" aria-label="Edit profile data">
+          <svg width="15" height="15"><use href="#icon-pencil"></use></svg>
+        </button>
+        <button class="run-btn" id="runBtn">
+          <svg width="10" height="10"><use href="#icon-play"></use></svg>
+          <span>Run</span>
+        </button>
+      </div>
+      <pre class="code-body" id="codeBody"></pre>
+      <div class="console-panel">
+        <div class="console-head">
+          <svg width="13" height="13"><use href="#icon-terminal"></use></svg>
+          <span>Console</span>
+        </div>
+        <div class="console-body" id="consoleBody">
+          <div class="console-placeholder">Click Run to see output here.</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Overlay shared by all sheets -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Avatar sheet -->
+  <div class="sheet" id="avatarSheet" role="dialog" aria-modal="true" aria-labelledby="avatarSheetTitle">
+    <div class="sheet-head">
+      <span class="sheet-title" id="avatarSheetTitle">Update profile picture</span>
+      <button class="sheet-close" data-close aria-label="Close"><svg width="14" height="14"><use href="#icon-x"></use></svg></button>
+    </div>
+    <div class="sheet-body">
+      <div class="avatar-preview-row" id="currentAvatarRow">
+        <div class="avatar-preview-circle" id="currentAvatarPreview"><span id="currentAvatarInitial" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);font-weight:800;color:var(--accent);">P</span></div>
+        <div class="avatar-preview-meta">
+          <div class="avatar-preview-name">Current picture</div>
+          <button class="link-btn" id="removeAvatarBtn" style="display:none">Remove picture</button>
+        </div>
+      </div>
+
+      <label class="avatar-dropzone" id="avatarDropzone" tabindex="0">
+        <svg width="24" height="24"><use href="#icon-image"></use></svg>
+        <span class="dz-title" style="font-size:13px;font-weight:600;">Click or drag an image here</span>
+        <span class="dz-sub" style="font-family:var(--font-mono);font-size:10.5px;color:var(--text-3);">PNG or JPG, square images look best</span>
+        <input type="file" id="avatarInput" accept="image/*">
+      </label>
+
+      <div class="avatar-preview-row" id="newAvatarRow" style="display:none">
+        <div class="avatar-preview-circle"><img id="newAvatarPreviewImg" alt=""></div>
+        <div class="avatar-preview-meta">
+          <div class="avatar-preview-name" id="newAvatarName">image.png</div>
+          <button class="link-btn" id="clearNewAvatarBtn">Choose a different file</button>
+        </div>
+      </div>
+    </div>
+    <div class="sheet-footer">
+      <button class="sheet-save-btn" id="saveAvatarBtn" disabled>Save picture</button>
+    </div>
+  </div>
+
+  <!-- Language sheet -->
+  <div class="sheet" id="langSheet" role="dialog" aria-modal="true" aria-labelledby="langSheetTitle">
+    <div class="sheet-head">
+      <span class="sheet-title" id="langSheetTitle">Edit languages</span>
+      <button class="sheet-close" data-close aria-label="Close"><svg width="14" height="14"><use href="#icon-x"></use></svg></button>
+    </div>
+    <div class="sheet-body">
+      <div class="lang-edit-list" id="langEditList"></div>
+      <div class="lang-add-row">
+        <input type="text" class="lang-add-input" id="langInput" placeholder="Add a language, e.g. RUST" maxlength="20">
+        <button class="lang-add-confirm" id="langAddConfirm">Add</button>
+      </div>
+    </div>
+    <div class="sheet-footer">
+      <button class="sheet-save-btn" data-close>Done</button>
+    </div>
+  </div>
+
+  <!-- Profile data sheet -->
+  <div class="sheet" id="dataSheet" role="dialog" aria-modal="true" aria-labelledby="dataSheetTitle">
+    <div class="sheet-head">
+      <span class="sheet-title" id="dataSheetTitle">Edit profile data</span>
+      <button class="sheet-close" data-close aria-label="Close"><svg width="14" height="14"><use href="#icon-x"></use></svg></button>
+    </div>
+    <div class="sheet-body">
+      <div class="form-row">
+        <label for="fName">name</label>
+        <input type="text" id="fName" maxlength="40">
+      </div>
+      <div class="form-row">
+        <label for="fUsername">username</label>
+        <input type="text" id="fUsername" maxlength="30">
+      </div>
+      <div class="form-grid">
+        <div class="form-row">
+          <label for="fAge">age</label>
+          <input type="number" id="fAge" min="0" max="120">
+          <span class="hint">leave blank for null</span>
+        </div>
+        <div class="form-row">
+          <label for="fResources">resources</label>
+          <input type="number" id="fResources" min="0">
+        </div>
+        <div class="form-row">
+          <label for="fContributions">contributions</label>
+          <input type="number" id="fContributions" min="0">
+        </div>
+      </div>
+      <span class="hint">recommendations updates automatically from the Recommend button.</span>
+    </div>
+    <div class="sheet-footer">
+      <button class="sheet-save-btn" id="saveDataBtn">Save changes</button>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+</div>
+
+<script>
+/* ============================================================
+   State — this object is the single source of truth for both
+   the visible profile UI and the "userProfile.js" code block.
+============================================================ */
+const state = {
+  name: 'Senso',
+  username: 'SensoTech',
+  age: null,
+  resources: 5,
+  recommendations: 15,
+  contributions: 105,
+  avatarDataUrl: null,
+  languages: ['HTML', 'CSS', 'PYTHON', 'PHP', 'JS', 'MONGODB'],
+  recommended: false
+};
+
+/* ============================================================
+   Back button
+============================================================ */
+document.getElementById('backBtn').addEventListener('click', () => {
+  if (document.referrer) history.back();
+  else window.location.href = '/index.html';
+});
+
+/* ============================================================
+   Toasts
+============================================================ */
+const toastStack = document.getElementById('toastStack');
+const TOAST_ICON = { success: 'icon-check-circle', error: 'icon-alert-circle', info: 'icon-info-circle' };
+
+function showToast(message, type = 'info', duration = 3000) {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `<svg width="18" height="18"><use href="#${TOAST_ICON[type] || TOAST_ICON.info}"></use></svg><span class="toast-text"></span>`;
+  toast.querySelector('.toast-text').textContent = message;
+  toastStack.appendChild(toast);
+  setTimeout(() => {
+    toast.classList.add('leaving');
+    toast.addEventListener('animationend', () => toast.remove(), { once: true });
+  }, duration);
+}
+
+/* ============================================================
+   Sheet / overlay plumbing — one shared pattern for all three
+   edit panels (avatar, languages, profile data).
+============================================================ */
+const overlay = document.getElementById('overlay');
+const sheets = ['avatarSheet', 'langSheet', 'dataSheet'].map(id => document.getElementById(id));
+
+function openSheet(sheet) {
+  overlay.classList.add('open');
+  sheet.classList.add('open');
+}
+
+function closeAllSheets() {
+  overlay.classList.remove('open');
+  sheets.forEach(s => s.classList.remove('open'));
+}
+
+overlay.addEventListener('click', closeAllSheets);
+document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', closeAllSheets));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAllSheets(); });
+
+/* ============================================================
+   Avatar (floating orb) rendering
+============================================================ */
+const avatarCircle       = document.getElementById('avatarCircle');
+const avatarInitialEl    = document.getElementById('avatarInitial');
+const miniAvatarInitial  = document.getElementById('miniAvatarInitial');
+const miniAvatar         = document.getElementById('miniAvatar');
+const usernamePill       = document.getElementById('usernamePill');
+
+function renderAvatar() {
+  const initial = (state.name || '?').trim().charAt(0).toUpperCase() || '?';
+
+  if (state.avatarDataUrl) {
+    avatarCircle.innerHTML = `<img src="${state.avatarDataUrl}" alt="">`;
+    miniAvatar.innerHTML = `<img src="${state.avatarDataUrl}" alt="">`;
+  } else {
+    avatarCircle.innerHTML = `<span class="avatar-initial">${initial}</span>`;
+    miniAvatar.innerHTML = `<span>${initial}</span>`;
+  }
+  usernamePill.textContent = '@' + state.username;
+}
+
+renderAvatar();
+
+/* ---- Avatar edit sheet ---- */
+const avatarEditBtn      = document.getElementById('avatarEditBtn');
+const avatarSheet        = document.getElementById('avatarSheet');
+const avatarDropzone     = document.getElementById('avatarDropzone');
+const avatarInput        = document.getElementById('avatarInput');
+const newAvatarRow       = document.getElementById('newAvatarRow');
+const newAvatarPreviewImg= document.getElementById('newAvatarPreviewImg');
+const newAvatarName      = document.getElementById('newAvatarName');
+const clearNewAvatarBtn  = document.getElementById('clearNewAvatarBtn');
+const saveAvatarBtn      = document.getElementById('saveAvatarBtn');
+const currentAvatarPreview = document.getElementById('currentAvatarPreview');
+const currentAvatarInitial = document.getElementById('currentAvatarInitial');
+const removeAvatarBtn      = document.getElementById('removeAvatarBtn');
+
+let pendingAvatarDataUrl = null;
+
+function refreshAvatarSheetPreview() {
+  if (state.avatarDataUrl) {
+    currentAvatarPreview.innerHTML = `<img src="${state.avatarDataUrl}" alt="">`;
+    removeAvatarBtn.style.display = 'inline';
+  } else {
+    currentAvatarPreview.innerHTML = `<span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;font-family:var(--font-mono);font-weight:800;color:var(--accent);">${(state.name||'?').charAt(0).toUpperCase()}</span>`;
+    removeAvatarBtn.style.display = 'none';
+  }
+}
+
+avatarEditBtn.addEventListener('click', () => {
+  pendingAvatarDataUrl = null;
+  newAvatarRow.style.display = 'none';
+  saveAvatarBtn.disabled = true;
+  refreshAvatarSheetPreview();
+  openSheet(avatarSheet);
+});
+
+function handleAvatarFile(file) {
+  if (!file || !file.type.startsWith('image/')) {
+    showToast('Please choose an image file.', 'error');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    pendingAvatarDataUrl = e.target.result;
+    newAvatarPreviewImg.src = pendingAvatarDataUrl;
+    newAvatarName.textContent = file.name;
+    newAvatarRow.style.display = 'flex';
+    saveAvatarBtn.disabled = false;
+  };
+  reader.readAsDataURL(file);
+}
+
+avatarInput.addEventListener('change', () => handleAvatarFile(avatarInput.files[0]));
+
+['dragenter', 'dragover'].forEach(evt => avatarDropzone.addEventListener(evt, e => {
+  e.preventDefault(); avatarDropzone.classList.add('drag-over');
+}));
+['dragleave', 'dragend'].forEach(evt => avatarDropzone.addEventListener(evt, () => avatarDropzone.classList.remove('drag-over')));
+avatarDropzone.addEventListener('drop', e => {
+  e.preventDefault();
+  avatarDropzone.classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleAvatarFile(e.dataTransfer.files[0]);
+});
+
+clearNewAvatarBtn.addEventListener('click', () => {
+  pendingAvatarDataUrl = null;
+  avatarInput.value = '';
+  newAvatarRow.style.display = 'none';
+  saveAvatarBtn.disabled = true;
+});
+
+removeAvatarBtn.addEventListener('click', () => {
+  state.avatarDataUrl = null;
+  renderAvatar();
+  refreshAvatarSheetPreview();
+  showToast('Profile picture removed.', 'info');
+});
+
+saveAvatarBtn.addEventListener('click', () => {
+  if (!pendingAvatarDataUrl) return;
+  state.avatarDataUrl = pendingAvatarDataUrl;
+  renderAvatar();
+  closeAllSheets();
+  showToast('Profile picture updated.', 'success');
+});
+
+/* ============================================================
+   Languages
+============================================================ */
+const langRow      = document.getElementById('langRow');
+const langAddBtn    = document.getElementById('langAddBtn');
+const langSheet     = document.getElementById('langSheet');
+const langEditList  = document.getElementById('langEditList');
+const langInput     = document.getElementById('langInput');
+const langAddConfirm = document.getElementById('langAddConfirm');
+
+function renderLanguages() {
+  // Main row (chips + trailing plus button)
+  langRow.querySelectorAll('.lang-chip').forEach(el => el.remove());
+  state.languages.forEach(lang => {
+    const chip = document.createElement('span');
+    chip.className = 'lang-chip';
+    chip.textContent = lang;
+    langRow.insertBefore(chip, langAddBtn);
+  });
+
+  // Edit sheet list
+  langEditList.innerHTML = '';
+  state.languages.forEach((lang, i) => {
+    const chip = document.createElement('span');
+    chip.className = 'lang-edit-chip';
+    chip.innerHTML = `<span></span><button aria-label="Remove ${lang}"><svg width="9" height="9"><use href="#icon-x"></use></svg></button>`;
+    chip.querySelector('span').textContent = lang;
+    chip.querySelector('button').addEventListener('click', () => {
+      state.languages.splice(i, 1);
+      renderLanguages();
+    });
+    langEditList.appendChild(chip);
+  });
+}
+
+renderLanguages();
+
+langAddBtn.addEventListener('click', () => {
+  langInput.value = '';
+  openSheet(langSheet);
+  langInput.focus();
+});
+
+function addLanguage() {
+  const val = langInput.value.trim().toUpperCase();
+  if (!val) return;
+  if (state.languages.includes(val)) {
+    showToast(`${val} is already on your profile.`, 'error');
+    return;
+  }
+  state.languages.push(val);
+  langInput.value = '';
+  renderLanguages();
+  langInput.focus();
+}
+
+langAddConfirm.addEventListener('click', addLanguage);
+langInput.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); addLanguage(); } });
+
+/* ============================================================
+   Recommend toggle
+============================================================ */
+const recommendBtn   = document.getElementById('recommendBtn');
+const recommendLabel = document.getElementById('recommendLabel');
+
+recommendBtn.addEventListener('click', () => {
+  state.recommended = !state.recommended;
+  state.recommendations += state.recommended ? 1 : -1;
+  recommendBtn.classList.toggle('active', state.recommended);
+  recommendLabel.textContent = state.recommended ? 'Recommended' : 'Recommend';
+  renderCode();
+  showToast(
+    state.recommended ? `You recommended ${state.name}'s profile.` : 'Recommendation removed.',
+    state.recommended ? 'success' : 'info'
+  );
+});
+
+/* ============================================================
+   Profile data sheet
+============================================================ */
+const dataEditBtn      = document.getElementById('dataEditBtn');
+const dataSheet        = document.getElementById('dataSheet');
+const saveDataBtn      = document.getElementById('saveDataBtn');
+const fName             = document.getElementById('fName');
+const fUsername         = document.getElementById('fUsername');
+const fAge              = document.getElementById('fAge');
+const fResources        = document.getElementById('fResources');
+const fContributions    = document.getElementById('fContributions');
+
+dataEditBtn.addEventListener('click', () => {
+  fName.value = state.name;
+  fUsername.value = state.username;
+  fAge.value = state.age === null ? '' : state.age;
+  fResources.value = state.resources;
+  fContributions.value = state.contributions;
+  openSheet(dataSheet);
+});
+
+saveDataBtn.addEventListener('click', () => {
+  const nameVal = fName.value.trim();
+  const usernameVal = fUsername.value.trim();
+
+  if (!nameVal || !usernameVal) {
+    showToast('Name and username can\'t be empty.', 'error');
+    return;
+  }
+
+  state.name = nameVal;
+  state.username = usernameVal;
+  state.age = fAge.value === '' ? null : Math.max(0, parseInt(fAge.value, 10) || 0);
+  state.resources = Math.max(0, parseInt(fResources.value, 10) || 0);
+  state.contributions = Math.max(0, parseInt(fContributions.value, 10) || 0);
+
+  renderAvatar();
+  renderCode();
+  closeAllSheets();
+  showToast('Profile data updated.', 'success');
+});
+
+/* ============================================================
+   Code block — renders `state` as syntax-highlighted JS,
+   always kept in sync with the profile above it.
+============================================================ */
+const codeBody = document.getElementById('codeBody');
+
+function esc(str) {
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function renderCode() {
+  const rows = [
+    ['name', `'${esc(state.name)}'`, 'string'],
+    ['username', `'${esc(state.username)}'`, 'string'],
+    ['age', state.age === null ? 'null' : state.age, state.age === null ? 'null' : 'num'],
+    ['resources', state.resources, 'num'],
+    ['recommendations', state.recommendations, 'num'],
+    ['contributions', state.contributions, 'num']
+  ];
+
+  const rowsHtml = rows.map(([key, val, kind], i) => {
+    const comma = i < rows.length - 1 ? '<span class="tok-punct">,</span>' : '';
+    return `  <span class="tok-key">${key}</span><span class="tok-punct">:</span> <span class="tok-${kind}">${val}</span>${comma}`;
+  }).join('\n');
+
+  codeBody.innerHTML =
+    `<span class="tok-kw">let</span> <span class="tok-fn">userData</span> <span class="tok-punct">=</span> <span class="tok-punct">{</span>\n` +
+    rowsHtml + `\n<span class="tok-punct">};</span>\n\n` +
+    `<span class="tok-fn">console</span><span class="tok-punct">.</span><span class="tok-fn">log</span><span class="tok-punct">(</span><span class="tok-fn">userData</span><span class="tok-punct">);</span>`;
+}
+
+renderCode();
+
+/* ============================================================
+   Run — never executes anything. It re-serializes the current
+   `state` object and prints it into the Console panel so it
+   *looks* like the script really ran, without ever eval()-ing
+   user-editable code.
+============================================================ */
+const runBtn       = document.getElementById('runBtn');
+const consoleBody   = document.getElementById('consoleBody');
+
+function formatFakeLog(obj) {
+  const parts = Object.entries(obj).map(([k, v]) => {
+    const shown = typeof v === 'string' ? `'${v}'` : (v === null ? 'null' : v);
+    return `${k}: ${shown}`;
+  });
+  return `{ ${parts.join(', ')} }`;
+}
+
+runBtn.addEventListener('click', () => {
+  const placeholder = consoleBody.querySelector('.console-placeholder');
+  if (placeholder) placeholder.remove();
+
+  const userData = {
+    name: state.name,
+    username: state.username,
+    age: state.age,
+    resources: state.resources,
+    recommendations: state.recommendations,
+    contributions: state.contributions
+  };
+
+  const line = document.createElement('div');
+  line.className = 'console-line';
+  line.innerHTML = `<span class="arrow">›</span><span class="out"></span>`;
+  line.querySelector('.out').textContent = formatFakeLog(userData);
+  consoleBody.prepend(line);
+});
+
+/* TODO: to be continued — hook Save actions up to a real profile API */
+</script>
+
+</body>
+</html>

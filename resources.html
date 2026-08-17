@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create post • Infinity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="resources.css">
+</head>
+
+<body>
+
+<svg style="display:none">
+  <symbol id="icon-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M15 18l-6-6 6-6"/>
+  </symbol>
+  <symbol id="icon-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+    <path d="M14 2v6h6"/>
+    <line x1="8.5" y1="13" x2="15.5" y2="13"/>
+    <line x1="8.5" y1="17" x2="13" y2="17"/>
+  </symbol>
+  <symbol id="icon-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="3" width="18" height="18" rx="3"/>
+    <circle cx="8.5" cy="8.5" r="1.6"/>
+    <path d="M21 15l-5.2-5.2a2 2 0 0 0-2.8 0L3 19.9"/>
+  </symbol>
+  <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="3 6 5 6 21 6"/>
+    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+    <path d="M10 11v6"/><path d="M14 11v6"/>
+    <path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>
+  </symbol>
+  <symbol id="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21.5 2.5L2.5 10.4c-.9.37-.86 1.66.06 1.98l7.1 2.44 2.44 7.1c.32.92 1.61.96 1.98.06L21.5 2.5z"/>
+    <path d="M11.6 14.84L21.5 2.5"/>
+  </symbol>
+  <symbol id="icon-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/>
+    <polyline points="8 12.5 11 15.5 16.5 9"/>
+  </symbol>
+  <symbol id="icon-alert-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/>
+    <line x1="12" y1="7.5" x2="12" y2="13"/>
+    <circle cx="12" cy="16.5" r="0.15" fill="currentColor" stroke-width="2.6"/>
+  </symbol>
+  <symbol id="icon-info-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9.5"/>
+    <line x1="12" y1="10.5" x2="12" y2="16.5"/>
+    <circle cx="12" cy="7.3" r="0.15" fill="currentColor" stroke-width="2.6"/>
+  </symbol>
+</svg>
+
+<div class="app-shell" id="appShell">
+
+  <header class="topbar">
+    <button class="icon-btn" id="backBtn" aria-label="Go back">
+      <svg width="20" height="20"><use href="#icon-back"></use></svg>
+    </button>
+    <div class="topbar-title">Create post</div>
+    <div class="topbar-spacer"></div>
+  </header>
+
+  <main class="composer">
+    <section class="composer-card">
+
+      <div class="composer-card-head">
+        <span>new-post — infinity</span>
+      </div>
+
+      <!-- Post type -->
+      <div class="field-group">
+        <div class="field-label-row">
+          <span class="field-label">What type of post is this?</span>
+        </div>
+        <div class="mood-toggle" id="postTypeToggle" role="group" aria-label="Post type">
+          <button type="button" class="mood-btn active" data-type="jovial">Jovial</button>
+          <button type="button" class="mood-btn" data-type="professional">Professional</button>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <div class="field-group">
+        <div class="field-label-row">
+          <label class="field-label" for="titleInput">Title <span class="optional-tag">optional</span></label>
+          <span class="char-counter" id="titleCounter">0 / 300 words</span>
+        </div>
+        <input
+          type="text"
+          id="titleInput"
+          class="title-input"
+          placeholder="e.g. how to center a div"
+          autocomplete="off">
+      </div>
+
+      <!-- Description -->
+      <div class="field-group">
+        <div class="field-label-row">
+          <label class="field-label" for="descInput">Description <span class="optional-tag">optional</span></label>
+          <span class="char-counter" id="descCounter">0 / 5000 words</span>
+        </div>
+        <div class="textarea-wrap">
+          <textarea id="descInput" class="desc-input" rows="5" aria-describedby="descCounter"></textarea>
+          <div class="desc-typing" id="descTyping" aria-hidden="true">
+            <span class="prompt">$</span><span id="descTypingText"></span><span class="caret"></span>
+          </div>
+        </div>
+        <span class="field-hint">Fill in a title or a description — at least one is needed to publish.</span>
+      </div>
+
+      <!-- Attachments -->
+      <div class="field-group">
+        <div class="field-label-row">
+          <span class="field-label">Attachments <span class="optional-tag">optional</span></span>
+          <span class="field-hint" id="attachHint">0 / 6 images</span>
+        </div>
+
+        <div class="dropzones">
+          <label class="dropzone" id="fileDropzone" tabindex="0">
+            <svg width="26" height="26"><use href="#icon-file"></use></svg>
+            <span class="dz-title">Click here to upload file(s)</span>
+            <span class="dz-sub">PDF, DOC, TXT, ZIP — up to 20MB each</span>
+            <input type="file" id="fileInput" multiple >
+          </label>
+
+          <label class="dropzone" id="imageDropzone" tabindex="0">
+            <svg width="26" height="26"><use href="#icon-image"></use></svg>
+            <span class="dz-title">Click here to upload image(s)</span>
+            <span class="dz-sub">PNG, JPG, GIF — max of 6 images</span>
+            <input type="file" id="imageInput" multiple accept="image/*">
+          </label>
+        </div>
+
+        <div class="attachment-grid" id="attachmentGrid"></div>
+      </div>
+
+      <div class="composer-footer">
+        <button class="publish-btn" id="publishBtn" type="button">
+          <span>Publish post</span>
+          <svg width="17" height="17"><use href="#icon-send"></use></svg>
+        </button>
+      </div>
+
+    </section>
+  </main>
+
+  <div class="toast-stack" id="toastStack"></div>
+
+</div>
+
+<script>
+/* ============================================================
+   Back button
+============================================================ */
+document.getElementById('backBtn').addEventListener('click', () => {
+  if (document.referrer) history.back();
+  else window.location.href = '/index.html';
+});
+
+/* ============================================================
+   Post type toggle (Jovial / Professional) — jovial is default
+============================================================ */
+const appShell = document.getElementById('appShell');
+document.getElementById('postTypeToggle').addEventListener('click', e => {
+  const btn = e.target.closest('.mood-btn');
+  if (!btn || btn.classList.contains('active')) return;
+  document.querySelectorAll('#postTypeToggle .mood-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  appShell.classList.toggle('mood-professional', btn.dataset.type === 'professional');
+});
+
+/* ============================================================
+   Toasts — modern replacement for alert()
+============================================================ */
+const toastStack = document.getElementById('toastStack');
+const TOAST_ICON = { success: 'icon-check-circle', error: 'icon-alert-circle', info: 'icon-info-circle' };
+
+function showToast(message, type = 'info', duration = 3500) {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `
+    <svg width="18" height="18"><use href="#${TOAST_ICON[type] || TOAST_ICON.info}"></use></svg>
+    <span class="toast-text"></span>`;
+  toast.querySelector('.toast-text').textContent = message; // safe text insert
+  toastStack.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('leaving');
+    toast.addEventListener('animationend', () => toast.remove(), { once: true });
+  }, duration);
+}
+
+/* ============================================================
+   Word counters — title 300 words, description 5000 words.
+   Typing past the limit is blocked (extra input is trimmed)
+   and a toast fires once per overflow attempt.
+============================================================ */
+function countWords(str) {
+  const trimmed = str.trim();
+  return trimmed ? trimmed.split(/\s+/).length : 0;
+}
+
+function wireCounter({ el, counterEl, limit, label, warnedFlagName }) {
+  const state = { warned: false };
+  const update = () => {
+    const words = countWords(el.value);
+    counterEl.textContent = `${words} / ${limit} words`;
+    counterEl.classList.toggle('warn', words >= limit * 0.85 && words < limit);
+    counterEl.classList.toggle('limit', words >= limit);
+  };
+
+  el.addEventListener('input', () => {
+    const words = el.value.trim() ? el.value.trim().split(/\s+/) : [];
+    if (words.length > limit) {
+      el.value = words.slice(0, limit).join(' ') + (el.value.endsWith(' ') ? '' : '');
+      if (!state.warned) {
+        showToast(`${label} can't exceed ${limit} words.`, 'error');
+        state.warned = true;
+      }
+    } else {
+      state.warned = false;
+    }
+    update();
+  });
+
+  update();
+  return update;
+}
+
+wireCounter({
+  el: document.getElementById('titleInput'),
+  counterEl: document.getElementById('titleCounter'),
+  limit: 300,
+  label: 'Title'
+});
+
+const updateDescCounter = wireCounter({
+  el: document.getElementById('descInput'),
+  counterEl: document.getElementById('descCounter'),
+  limit: 5000,
+  label: 'Description'
+});
+
+/* ============================================================
+   Description placeholder — terminal-style typing animation.
+   Cycles through example prompts, fast (30ms/char), stops the
+   instant the user focuses the field (i.e. starts typing) and
+   only resumes if they leave it empty again.
+============================================================ */
+const descInput      = document.getElementById('descInput');
+const descTyping      = document.getElementById('descTyping');
+const descTypingText  = document.getElementById('descTypingText');
+
+const DESC_EXAMPLES = [
+  'e.g. Centering a div without losing your mind...',
+  'e.g. A debounce hook that cleans up on unmount...',
+  'e.g. Regex to validate emails without regret...',
+  'e.g. One-liner to flatten a nested list...'
+];
+
+let descTypeTimer = null;
+let descTypeRunning = false;
+
+function typeDescLoop() {
+  if (descTypeRunning) return;
+  descTypeRunning = true;
+  let exampleIndex = 0;
+
+  const step = () => {
+    if (!descTypeRunning) return;
+    const full = DESC_EXAMPLES[exampleIndex % DESC_EXAMPLES.length];
+    let i = 0;
+    descTypingText.textContent = '';
+
+    descTypeTimer = setInterval(() => {
+      if (!descTypeRunning) { clearInterval(descTypeTimer); return; }
+      i++;
+      descTypingText.textContent = full.slice(0, i);
+      if (i >= full.length) {
+        clearInterval(descTypeTimer);
+        descTypeTimer = setTimeout(() => {
+          if (!descTypeRunning) return;
+          exampleIndex++;
+          step();
+        }, 1100);
+      }
+    }, 28); // fast character-by-character typing
+  };
+
+  step();
+}
+
+function stopDescLoop() {
+  descTypeRunning = false;
+  clearInterval(descTypeTimer);
+  clearTimeout(descTypeTimer);
+  descTyping.classList.add('hidden');
+}
+
+descInput.addEventListener('focus', stopDescLoop);
+descInput.addEventListener('input', () => {
+  if (descInput.value.length > 0) stopDescLoop();
+});
+descInput.addEventListener('blur', () => {
+  if (descInput.value.trim() === '') {
+    descTyping.classList.remove('hidden');
+    typeDescLoop();
+  }
+});
+
+typeDescLoop(); // start on load
+
+/* ============================================================
+   Attachments — drag & drop, previews, per-file loading state
+============================================================ */
+const attachmentGrid = document.getElementById('attachmentGrid');
+const attachHint      = document.getElementById('attachHint');
+const MAX_IMAGES       = 6;
+let imageCount = 0;
+
+function formatSize(bytes) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function updateAttachHint() {
+  attachHint.textContent = `${imageCount} / ${MAX_IMAGES} images`;
+}
+
+function addAttachment(file, isImage) {
+  if (isImage && imageCount >= MAX_IMAGES) {
+    showToast(`You can only attach up to ${MAX_IMAGES} images.`, 'error');
+    return;
+  }
+  if (isImage) { imageCount++; updateAttachHint(); }
+
+  const card = document.createElement('div');
+  card.className = 'attachment-card uploading';
+  card.innerHTML = `
+    <div class="attachment-thumb"></div>
+    <div class="attachment-meta">
+      <div class="attachment-name"></div>
+      <div class="attachment-size"></div>
+    </div>
+    <button class="attachment-remove" type="button" aria-label="Remove file">
+      <svg width="13" height="13"><use href="#icon-trash"></use></svg>
+    </button>
+    <div class="attachment-spinner"><div class="spinner"></div></div>`;
+
+  card.querySelector('.attachment-name').textContent = file.name;
+  card.querySelector('.attachment-size').textContent = formatSize(file.size);
+
+  const thumb = card.querySelector('.attachment-thumb');
+  if (isImage) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      img.alt = '';
+      thumb.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  } else {
+    thumb.innerHTML = '<svg width="30" height="30"><use href="#icon-file"></use></svg>';
+  }
+
+  card.querySelector('.attachment-remove').addEventListener('click', () => {
+    card.remove();
+    if (isImage) { imageCount--; updateAttachHint(); }
+  });
+
+  attachmentGrid.appendChild(card);
+
+  // Loading spinner shows for 3s, then clears
+  setTimeout(() => {
+    card.classList.remove('uploading');
+  }, 3000);
+}
+
+function handleFiles(fileList, isImage) {
+  Array.from(fileList).forEach(file => addAttachment(file, isImage));
+}
+
+function wireDropzone(zoneId, inputId, isImage) {
+  const zone = document.getElementById(zoneId);
+  const input = document.getElementById(inputId);
+
+  input.addEventListener('change', () => {
+    handleFiles(input.files, isImage);
+    input.value = '';
+  });
+
+  ['dragenter', 'dragover'].forEach(evt =>
+    zone.addEventListener(evt, e => {
+      e.preventDefault();
+      zone.classList.add('drag-over');
+    })
+  );
+
+  ['dragleave', 'dragend'].forEach(evt =>
+    zone.addEventListener(evt, () => zone.classList.remove('drag-over'))
+  );
+
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files, isImage);
+  });
+
+  // keyboard/focus activation for the label wrapping the hidden input
+  zone.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
+  });
+}
+
+wireDropzone('fileDropzone', 'fileInput', false);
+wireDropzone('imageDropzone', 'imageInput', true);
+
+// Prevent the browser from navigating away if a file is dropped outside a zone
+['dragover', 'drop'].forEach(evt =>
+  window.addEventListener(evt, e => e.preventDefault())
+);
+
+/* ============================================================
+   Publish — title and description are each optional, but at
+   least one of the two must be filled in.
+============================================================ */
+document.getElementById('publishBtn').addEventListener('click', () => {
+  const titleVal = document.getElementById('titleInput').value.trim();
+  const descVal  = descInput.value.trim();
+
+  if (!titleVal && !descVal) {
+    showToast('Add a title or a description to publish your post.', 'error');
+    return;
+  }
+
+  showToast('Post published!', 'success');
+
+
+});
+</script>
+<script>
+const fileInput = document.getElementById('fileInput');
+
+// Blocked program extensions
+const blockedExtensions = ['.exe', '.bat', '.cmd', '.scr', '.msi', '.vbs', '.jar', '.app', '.com'];
+const MAX_SIZE = 400 * 1024 * 1024; // 400MB in bytes
+
+fileInput.addEventListener('change', (e) => {
+  const files = Array.from(e.target.files);
+
+  // 1. Check for blocked extensions
+  const badFile = files.find(file => {
+    const name = file.name.toLowerCase();
+    return blockedExtensions.some(ext => name.endsWith(ext));
+  });
+
+  if (badFile) {
+    alert(`Blocked: .exe and program files are not allowed`);
+    fileInput.value = ''; // clear all input
+    return;
+  }
+
+  // 2. Check file size
+  const bigFile = files.find(file => file.size > MAX_SIZE);
+  if (bigFile) {
+    alert(`File too large: ${bigFile.name}. Max 400MB per file`);
+    fileInput.value = ''; // clear all input
+    return;
+  }
+
+  // If we get here, all files are good
+  console.log('Files OK:', files.map(f => f.name));
+});
+</script>
+</body>
+</html>
