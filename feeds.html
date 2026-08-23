@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feeds • Infinity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="feeds.css">
+</head>
+
+<body>
+
+<svg style="display:none">
+  <symbol id="icon-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 12c2.4-3.2 4.8-5 7.5-5 2.5 0 4 2 4 5s-1.5 5-4 5c-2.7 0-5.1-1.8-7.5-5-2.4 3.2-4.8 5-7.5 5-2.5 0-4-2-4-5s1.5-5 4-5c2.7 0 5.1 1.8 7.5 5z"/>
+  </symbol>
+  <symbol id="icon-post" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+  </symbol>
+  <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 6 9 17 4 12"/>
+  </symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/>
+  </symbol>
+  <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </symbol>
+
+  <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.8 8.6c0-2.5-2-4.4-4.5-4.4-1.6 0-3.1.9-3.9 2.2-.8-1.3-2.3-2.2-3.9-2.2-2.5 0-4.5 2-4.5 4.4 0 5.4 8.4 10.8 8.4 10.8s8.4-5.4 8.4-10.8z"/>
+  </symbol>
+  <symbol id="icon-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+  </symbol>
+  <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+  </symbol>
+  <symbol id="icon-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/>
+    <path d="M7 5H4a1 1 0 0 0-1 1c0 3 2 5 4 5M17 5h3a1 1 0 0 1 1 1c0 3-2 5-4 5"/>
+  </symbol>
+  <symbol id="icon-feed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+  </symbol>
+</svg>
+
+<div class="app-shell" id="appShell">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-title">Infinity</span>
+      <span class="brand-tag"><svg width="26" height="26"><use href="#icon-brand"></use></svg></span>
+    </div>
+
+    <div class="topbar-actions">
+      <a href="/resources/resources.html">
+        <button class="icon-btn" aria-label="Create post">
+          <svg width="20" height="20"><use href="#icon-post"></use></svg>
+        </button>
+      </a>
+      <a href="/notifications/notifications.html">
+        <button class="icon-btn" aria-label="Notifications">
+          <svg width="20" height="20"><use href="#icon-bell"></use></svg>
+        </button>
+      </a>
+      <a href="/profile.html">
+        <img src="/IMG-20260728-WA8256.jpg" class="avatar" alt="Profile">
+      </a>
+    </div>
+
+    <section class="search-section">
+      <div class="search-box">
+        <svg width="16" height="16"><use href="#icon-search"></use></svg>
+        <input type="text" placeholder="search snippets, posts, devs...">
+      </div>
+    </section>
+  </header>
+
+  <!-- ============================================================
+        FEED
+  ============================================================ -->
+  <main class="feed snippet-feed">
+
+    <article class="post-card snippet-card">
+      <header class="post-header">
+        <div class="post-author">
+          <img src="/IMG-20260728-WA8256.jpg" class="profile-avatar" alt="">
+          <div>
+            <div class="profile-name">sensa</div>
+            <div class="post-meta">40m ago</div>
+          </div>
+        </div>
+        <div class="post-options">
+          <button class="follow-btn">Recommend</button>
+        </div>
+      </header>
+
+      <section class="post-content">
+        <h1 class="post-title">Debounce hook that actually cancels on unmount</h1>
+        <p class="post-description">
+          Ran into stale closures with the usual debounce hook pattern. This version
+          clears the timeout on unmount and re-creates it only when the delay changes.
+        </p>
+      </section>
+
+      <footer class="post-footer">
+
+        <button class="action-btn like-btn" aria-label="Like">
+          <svg width="16" height="16"><use href="#icon-heart"></use></svg><span>96</span>
+        </button>
+        <button class="action-btn comment-toggle-btn">
+          <svg width="16" height="16"><use href="#icon-message"></use></svg><span>28</span>
+        </button>
+
+        <button class="action-btn favorite-btn">
+          <svg width="16" height="16"><use href="#icon-save"></use></svg><span>61</span>
+        </button>
+      </footer>
+
+      <section class="comments-section" hidden>
+        <div class="comments-list">
+          <div class="comment">
+            <img src="/IMG-20260728-WA8256.jpg" class="comment-avatar" alt="">
+            <div class="comment-body">
+              <div class="comment-header">
+                <span class="comment-author">rowan_dev</span>
+                <span class="comment-time">22m ago</span>
+              </div>
+              <p class="comment-text">This saved me from a nasty memory leak, thank you!</p>
+              <div class="comment-actions">
+                <button class="comment-reply-btn">Reply</button>
+              </div>
+              <div class="replies"></div>
+            </div>
+          </div>
+          <div class="comment">
+            <img src="/IMG-20260728-WA8256.jpg" class="comment-avatar" alt="">
+            <div class="comment-body">
+              <div class="comment-header">
+                <span class="comment-author">t.izzy</span>
+                <span class="comment-time">1h ago</span>
+              </div>
+              <p class="comment-text">Would this need a ref if delay changes mid-timeout?</p>
+              <div class="comment-actions">
+                <button class="comment-reply-btn">Reply</button>
+              </div>
+              <div class="replies">
+                <div class="comment reply">
+                  <img src="/IMG-20260728-WA8256.jpg"class="comment-avatar" alt="">
+                  <div class="comment-body">
+                    <div class="comment-header">
+                      <span class="comment-author">sensa</span>
+                      <span class="comment-time">40m ago</span>
+                    </div>
+                    <p class="comment-text">Nope, the effect re-runs and clears the old timeout automatically.</p>
+                    <div class="comment-actions">
+                      <button class="comment-reply-btn">Reply</button>
+                    </div>
+                    <div class="replies"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form class="comment-form">
+          <img src="/IMG-20260728-WA8256.jpg" class="comment-avatar" alt="">
+          <input type="text" class="comment-input" placeholder="Add a comment..." aria-label="Add a comment">
+          <button type="submit" class="comment-submit">Post</button>
+        </form>
+      </section>
+    </article>
+
+    <article class="post-card">
+      <header class="post-header">
+        <div class="post-author">
+          <img src="/IMG-20260728-WA8256.jpg" class="profile-avatar" alt="">
+          <div>
+            <div class="profile-name">rowan_dev</div>
+            <div class="post-meta">1h ago</div>
+          </div>
+        </div>
+        <div class="post-options">
+          <button class="follow-btn">Recommend</button>
+        </div>
+      </header>
+
+      <section class="post-content">
+        <h1 class="post-title">Shipped dark mode after three weekends of "just this one bug"</h1>
+        <p class="post-description">
+          Turns out the hard part was never the CSS variables, it was the eleven components
+          that assumed a white background and quietly relied on it. Worth it though.
+        </p>
+      </section>
+
+      <footer class="post-footer">
+
+        <button class="action-btn like-btn" aria-label="Like">
+          <svg width="16" height="16"><use href="#icon-heart"></use></svg><span>33</span>
+        </button>
+        <button class="action-btn comment-toggle-btn">
+          <svg width="16" height="16"><use href="#icon-message"></use></svg><span>11</span>
+        </button>
+
+        <button class="action-btn favorite-btn">
+          <svg width="16" height="16"><use href="#icon-save"></use></svg><span>14</span>
+        </button>
+      </footer>
+
+      <section class="comments-section" hidden>
+        <div class="comments-list"></div>
+        <form class="comment-form">
+          <img src="/IMG-20260728-WA8256.jpg" class="comment-avatar" alt="">
+          <input type="text" class="comment-input" placeholder="Add a comment..." aria-label="Add a comment">
+          <button type="submit" class="comment-submit">Post</button>
+        </form>
+      </section>
+    </article>
+
+    <article class="post-card snippet-card">
+      <header class="post-header">
+        <div class="post-author">
+          <img src="/IMG-20260728-WA8256.jpg" class="profile-avatar" alt="">
+          <div>
+            <div class="profile-name">sensa</div>
+            <div class="post-meta">3h ago</div>
+          </div>
+        </div>
+        <div class="post-options">
+          <button class="follow-btn">Recommend</button>
+        </div>
+      </header>
+
+      <section class="post-content">
+        <h1 class="post-title">One-liner to flatten a nested list of any depth</h1>
+        <p class="post-description">
+          No imports needed. Recursive generator, works on arbitrarily nested lists/tuples.
+        </p>
+      </section>
+
+      <footer class="post-footer">
+
+        <button class="action-btn like-btn" aria-label="Like">
+          <svg width="16" height="16"><use href="#icon-heart"></use></svg><span>410</span>
+        </button>
+        <button class="action-btn comment-toggle-btn">
+          <svg width="16" height="16"><use href="#icon-message"></use></svg><span>52</span>
+        </button>
+
+        <button class="action-btn favorite-btn">
+          <svg width="16" height="16"><use href="#icon-save"></use></svg><span>203</span>
+        </button>
+      </footer>
+
+      <section class="comments-section" hidden>
+        <div class="comments-list">
+          <div class="comment">
+            <img src="/IMG-20260728-WA8256.jpg" class="comment-avatar" alt="">
+            <div class="comment-body">
+              <div class="comment-header">
+                <span class="comment-author">devon.k</span>
+                <span class="comment-time">2h ago</span>
+              </div>
+              <p class="comment-text">Clean. Using this in a config parser today.</p>
+              <div class="comment-actions">
+                <button class="comment-reply-btn">Reply</button>
+              </div>
+              <div class="replies"></div>
+            </div>
+          </div>
+        </div>
+        <form class="comment-form">
+          <img src="/IMG-20260728-WA8256.jpg" class="comment-avatar" alt="">
+          <input type="text" class="comment-input" placeholder="Add a comment..." aria-label="Add a comment">
+          <button type="submit" class="comment-submit">Post</button>
+        </form>
+      </section>
+    </article>
+
+  </main>
+
+  <!-- FAB — same "add post" pattern as homepage -->
+  <a href="/resources/resources.html">
+    <button class="fab-create" id="add-post" aria-label="Create post">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+    </button>
+  </a>
+
+  <!-- ============================================================
+        BOTTOM NAV
+  ============================================================ -->
+  <nav class="bottom-nav">
+    <a href="/homepage.html" class="bottom-nav-link">
+      <svg width="20" height="20"><use href="#icon-trophy"></use></svg>
+      <span>Challenge</span>
+    </a>
+    <a href="/feeds.html" class="bottom-nav-link active">
+      <svg width="20" height="20"><use href="#icon-feed"></use></svg>
+      <span>Feeds</span>
+    </a>
+    <a href="/profile.html" class="bottom-nav-link">
+      <svg width="20" height="20"><use href="#icon-user"></use></svg>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+</div>
+
+<script>
+/* FEED TABS */
+document.querySelectorAll(".snippet-lang-tabs .tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".snippet-lang-tabs .tab").forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+  });
+});
+
+/* COPY BUTTON */
+document.querySelectorAll(".copy-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const code = btn.closest(".code-block").querySelector("code").innerText;
+    navigator.clipboard.writeText(code).then(() => {
+      const label = btn.querySelector("span");
+      const originalText = label.textContent;
+      const originalIcon = btn.querySelector("svg use").getAttribute("href");
+      btn.querySelector("svg use").setAttribute("href", "#icon-check");
+      label.textContent = "Copied";
+      btn.classList.add("copied");
+      setTimeout(() => {
+        btn.querySelector("svg use").setAttribute("href", originalIcon);
+        label.textContent = originalText;
+        btn.classList.remove("copied");
+      }, 1500);
+    });
+  });
+});
+
+/* FOLLOW TOGGLE */
+document.querySelectorAll('.follow-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const following = btn.textContent.trim() === 'Recommended';
+    btn.textContent      = following ? 'Recommend' : 'Recommended';
+    btn.style.background = following ? 'var(--accent)' : 'black';
+  });
+});
+
+/* RUN CODE — via Piston API (https://github.com/engineer-man/piston) */
+
+// NOTE: As of Feb 2026 the public Piston API requires an authorization
+// key (see github.com/engineer-man/piston). Paste yours below, or point
+// PISTON_API_URL at your own self-hosted instance instead.
+const PISTON_API_URL = "https://emkc.org/api/v2/piston/execute";
+const PISTON_API_KEY = ""; // leave blank if self-hosting / not required
+
+// Piston only accepts these exact language names (its "designated
+// languages" — see GET /api/v2/piston/runtimes for the live list).
+// Map each code-filename's extension to the right Piston language.
+const EXT_TO_PISTON_LANG = {
+  js: "javascript", mjs: "javascript", cjs: "javascript",
+  ts: "typescript",
+  py: "python", py2: "python2",
+  rb: "ruby",
+  java: "java",
+  c: "c",
+  cpp: "c++", cc: "c++", cxx: "c++",
+  cs: "csharp",
+  go: "go",
+  rs: "rust",
+  php: "php",
+  swift: "swift",
+  kt: "kotlin",
+  scala: "scala",
+  pl: "perl",
+  lua: "lua",
+  hs: "haskell",
+  ex: "elixir", exs: "elixir",
+  erl: "erlang",
+  clj: "clojure",
+  groovy: "groovy",
+  dart: "dart",
+  r: "rscript",
+  jl: "julia",
+  nim: "nim",
+  cr: "crystal",
+  d: "d",
+  f: "fortran", f90: "fortran", f95: "fortran",
+  sh: "bash",
+  ps1: "powershell",
+  sql: "sqlite3",
+  asm: "nasm"
+};
+
+function langForFilename(filename) {
+  const ext = filename.trim().split(".").pop().toLowerCase();
+  return EXT_TO_PISTON_LANG[ext] || null;
+}
+
+function showRunOutput(codeBlock, { lang, text, isError }) {
+  const panel = codeBlock.querySelector(".run-output");
+  panel.querySelector(".run-output-lang").textContent = lang || "";
+  const body = panel.querySelector(".run-output-body");
+  body.textContent = text;
+  body.classList.toggle("run-output-error", !!isError);
+  panel.hidden = false;
+}
+
+document.querySelectorAll(".run-btn").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const codeBlock = btn.closest(".code-block");
+    const filename   = codeBlock.querySelector(".code-filename").textContent;
+    const code       = codeBlock.querySelector("code").innerText;
+    const label      = btn.querySelector("span");
+    const lang       = langForFilename(filename);
+
+    if (!lang) {
+      showRunOutput(codeBlock, {
+        lang: filename,
+        text: `"${filename}" isn't a language Piston supports. See GET ${PISTON_API_URL.replace("execute", "runtimes")} for the full list.`,
+        isError: true
+      });
+      return;
+    }
+
+    const originalLabel = label.textContent;
+    label.textContent = "Running…";
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(PISTON_API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...(PISTON_API_KEY ? { "Authorization": PISTON_API_KEY } : {})
+        },
+        body: JSON.stringify({
+          language: lang,
+          version: "*",
+          files: [{ name: filename, content: code }]
+        })
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `Piston returned HTTP ${res.status}`);
+      }
+
+      const data = await res.json();
+      // compile errors (for compiled languages) take priority over run output
+      const stage = (data.compile && data.compile.code !== 0) ? data.compile : data.run;
+      const output = (stage.stdout || "") + (stage.stderr || "");
+
+      showRunOutput(codeBlock, {
+        lang: `${data.language} ${data.version}`,
+        text: output.trim() || "(no output)",
+        isError: stage.code !== 0
+      });
+    } catch (err) {
+      showRunOutput(codeBlock, {
+        lang,
+        text: `Request failed: ${err.message}`,
+        isError: true
+      });
+    } finally {
+      label.textContent = originalLabel;
+      btn.disabled = false;
+    }
+  });
+});
+
+document.querySelectorAll(".run-output-close").forEach(closeBtn => {
+  closeBtn.addEventListener("click", () => {
+    closeBtn.closest(".run-output").hidden = true;
+  });
+});
+
+/* FAVORITE (SAVE) TOGGLE — count goes up when favorited, back down when un-favorited */
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+  const countEl = btn.querySelector('span');
+  let count = parseInt(countEl.textContent, 10);
+
+  btn.addEventListener('click', () => {
+    const active = btn.classList.toggle('active');
+    count += active ? 1 : -1;
+    countEl.textContent = count;
+    btn.style.color = active ? 'var(--accent)' : 'var(--text-2)';
+  });
+});
+
+/* COMMENTS */
+function makeCommentEl({ author, time, text }) {
+  const wrap = document.createElement('div');
+  wrap.className = 'comment reply';
+  wrap.innerHTML = `
+    <img src="/IMG-20260728-WA8256.jpg" class="comment-avatar" alt="">
+    <div class="comment-body">
+      <div class="comment-header">
+        <span class="comment-author">${author}</span>
+        <span class="comment-time">${time}</span>
+      </div>
+      <p class="comment-text"></p>
+      <div class="comment-actions">
+        <button class="comment-reply-btn">Reply</button>
+      </div>
+      <div class="replies"></div>
+    </div>`;
+  wrap.querySelector('.comment-text').textContent = text; // safe text insert
+  return wrap;
+}
+
+function bumpCommentCount(postCard, delta) {
+  const commentBtn = postCard.querySelector('.comment-toggle-btn span');
+  commentBtn.textContent = parseInt(commentBtn.textContent, 10) + delta;
+}
+
+/* Toggle a post's comments section open/closed */
+document.querySelectorAll('.comment-toggle-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const section = btn.closest('.post-card').querySelector('.comments-section');
+    section.hidden = !section.hidden;
+    btn.classList.toggle('active', !section.hidden);
+  });
+});
+
+/* Top-level "Add a comment" forms */
+document.querySelectorAll('.comment-form').forEach(form => {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const input = form.querySelector('.comment-input');
+    const text = input.value.trim();
+    if (!text) return;
+    const list = form.previousElementSibling; // .comments-list
+    const el = makeCommentEl({ author: 'you', time: 'just now', text });
+    el.classList.remove('reply');
+    list.appendChild(el);
+    input.value = '';
+    bumpCommentCount(form.closest('.post-card'), 1);
+  });
+});
+
+/* Reply buttons — open an inline reply box under the comment, nest the reply on submit */
+document.querySelector('.feed').addEventListener('click', e => {
+  const replyBtn = e.target.closest('.comment-reply-btn');
+  if (!replyBtn) return;
+
+  const commentBody = replyBtn.closest('.comment-body');
+  let replyForm = commentBody.querySelector(':scope > .reply-form');
+
+  if (replyForm) { replyForm.remove(); return; } // toggle off if already open
+
+  replyForm = document.createElement('form');
+  replyForm.className = 'comment-form reply-form';
+  replyForm.innerHTML = `
+    <img src="/IMG-20260728-WA8256.jpg" class="comment-avatar" alt="">
+    <input type="text" class="comment-input" placeholder="Write a reply..." aria-label="Write a reply">
+    <button type="submit" class="comment-submit">Reply</button>`;
+  commentBody.querySelector(':scope > .comment-actions').after(replyForm);
+  replyForm.querySelector('.comment-input').focus();
+
+  replyForm.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const input = replyForm.querySelector('.comment-input');
+    const text = input.value.trim();
+    if (!text) return;
+    const repliesEl = commentBody.querySelector(':scope > .replies');
+    repliesEl.appendChild(makeCommentEl({ author: 'you', time: 'just now', text }));
+    bumpCommentCount(replyForm.closest('.post-card'), 1);
+    replyForm.remove();
+  });
+});
+
+/* LIKE BUTTON — real toggle with count + a small bump on like */
+document.querySelectorAll('.like-btn').forEach(btn => {
+  const countEl = btn.querySelector('span');
+  let count = parseInt(countEl.textContent, 10);
+
+  btn.addEventListener('click', () => {
+    const active = btn.classList.toggle('active');
+    count += active ? 1 : -1;
+    countEl.textContent = count;
+    if (active) {
+      btn.classList.add('bump');
+      setTimeout(() => btn.classList.remove('bump'), 400);
+    }
+  });
+});
+
+/* FAB — hide on scroll down, show on scroll up */
+const fab = document.getElementById("add-post");
+let lastScrollY = window.scrollY;
+window.addEventListener("scroll", () => {
+  if (window.scrollY > lastScrollY && window.scrollY > 100) {
+    fab.style.transform = "scale(0) translateY(100px)";
+    fab.style.opacity   = "0";
+  } else {
+    fab.style.transform = "scale(1) translateY(0)";
+    fab.style.opacity   = "1";
+  }
+  lastScrollY = window.scrollY;
+});
+</script>
+
+</body>
+</html>

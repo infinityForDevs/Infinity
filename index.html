@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>forkSpace — the social platform for coders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="stylesheet" href="index.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body id="body">
+
+<svg style="display:none">
+  <symbol id="icon-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 12c2.4-3.2 4.8-5 7.5-5 2.5 0 4 2 4 5s-1.5 5-4 5c-2.7 0-5.1-1.8-7.5-5-2.4 3.2-4.8 5-7.5 5-2.5 0-4-2-4-5s1.5-5 4-5c2.7 0 5.1 1.8 7.5 5z"/>
+  </symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+  </symbol>
+  <symbol id="icon-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/>
+    <path d="M7 5H4a1 1 0 0 0-1 1c0 3 2 5 4 5M17 5h3a1 1 0 0 1 1 1c0 3-2 5-4 5"/>
+  </symbol>
+  <symbol id="icon-feed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/>
+  </symbol>
+</svg>
+
+<header class="topbar-wrap">
+  <div class="wrap topbar">
+    <div class="brand">
+      <span class="brand-title">forkSpace</span>
+      <span class="brand-tag"><svg width="22" height="22"><use href="#icon-brand"></use></svg></span>
+    </div>
+    <nav class="site-nav">
+      <a class="site-nav-link" href="#footer">Get Started</a>
+    </nav>
+    <div class="topbar-actions">
+      <a class="btn btn-ghost" href="#" style="display:none" id="signInDesktop">Sign in</a>
+      <a class="btn btn-primary" href="#">Join forkSpace</a>
+      <button class="icon-btn burger" id="burgerBtn" aria-label="Open menu">
+        <svg width="20" height="20"><use href="#icon-menu"></use></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+  <a class="btn btn-ghost" href="#">Get Started</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+
+
+      
+
+      <h1 class="headline" id="headline">Where devs post code, run it live, and climb the board.</h1>
+      <p class="sub" id="subhead">forkSpace is a feed for developers — post snippets that actually run, get recommended by peers, and see where you rank.</p>
+
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#">Create your profile</a>
+      </div>
+
+      <div class="code-block reveal">
+        <div class="code-block-header">
+          <span class="code-filename">forkSpace.sh</span>
+          <div class="code-options"><button class="run-btn">▸ run</button></div>
+        </div>
+        <pre class="code-pre"><span class="c">$</span> forkSpace post <span class="k">--file</span> useDebounce.js
+  <span class="s">↳</span> shipped to feed · 96 likes · 28 comments
+<span class="c">$</span> forkSpace profile <span class="k">--run</span>
+  <span class="s">↳</span> userProfile.js executed → console: langs, bio, stats
+<span class="c">$</span> forkSpace board <span class="k">--rank</span>
+  <span class="s">↳</span> #3 on the leaderboard · 2,410 pts · level 14</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="section-label reveal-type">// what you get</div>
+
+      <div class="card feature-full reveal">
+        <div class="inner">
+          <div>
+            <div class="feature-lead"><span class="ico">◆</span> Dev Profile</div>
+            <p class="feature-desc">Your profile is <b>a real code file</b> — pick your languages, write your bio as a script, and hit run to print it straight to a console panel.</p>
+            <ul class="checks">
+              <li>Language badges you choose yourself</li>
+              <li>Bio lives in a runnable userProfile.js</li>
+              <li>Get recommended by other devs</li>
+            </ul>
+          </div>
+          <div class="visual-box">
+            <div class="mini-post" style="max-width:220px;">
+              <div class="mini-row"><div class="mini-av"></div><div class="mini-bar" style="max-width:70%;"></div></div>
+              <div class="mini-row"><div class="mini-av" style="background:var(--green);"></div><div class="mini-bar" style="max-width:50%;"></div></div>
+              <div class="mini-row"><div class="mini-av" style="background:var(--text-3);"></div><div class="mini-bar" style="max-width:85%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="card reveal">
+          <div class="feature-lead"><span class="ico">◎</span> Code Feed</div>
+          <p class="feature-desc">Post quick updates or code snippets. Snippets in the feed can be <b>run for real</b> right where they're posted — no copy-pasting into your own editor.</p>
+          <div class="visual-box">
+            <div class="mini-post">
+              <div class="mini-row"><div class="mini-av"></div><div class="mini-bar" style="max-width:75%;"></div></div>
+              <div class="mini-row"><div class="mini-av" style="background:var(--green);"></div><div class="mini-bar" style="max-width:45%;"></div></div>
+              <div class="mini-row"><div class="mini-av" style="background:var(--text-3);"></div><div class="mini-bar" style="max-width:90%;"></div></div>
+              <div class="mini-row"><div class="mini-av" style="background:var(--accent);"></div><div class="mini-bar" style="max-width:55%;"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card reveal">
+          <div class="feature-lead"><span class="ico">▤</span> Challenge Board</div>
+          <p class="feature-desc">Every profile shows up on one <b>searchable, ranked list</b> — sorted by points and level, so you always know where you stand.</p>
+          <div class="visual-box">
+            <div style="padding:16px;font-family:var(--font-mono);font-size:12px;color:var(--text-2);width:100%;">
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);">priya_dev <span style="color:var(--accent);">3,510 pts</span></div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);">devon.k <span>2,960 pts</span></div>
+              <div style="display:flex;justify-content:space-between;padding:6px 0;">sensa <span>2,140 pts</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="tagline reveal">We're not another clone of X, but just a group of developers who need our space.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="trust-label reveal-type">// devs on forkSpace ship for</div>
+      <div class="logo-strip reveal">
+        <div>NimbusLabs</div><div>Fractal</div><div>Hexbyte</div><div>Voidstack</div><div>Pathwise</div>
+        <div>Coreloop</div><div>Driftware</div><div>Kettle&amp;Co</div><div>Ledgerly</div><div>Northstack</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="feed">
+    <div class="wrap">
+      <h2 style="font-size:23px;" class="reveal">Stay in the loop without leaving the feed</h2>
+      <p style="color:var(--text-2);margin-top:8px;font-size:14px;" class="reveal">Browse code, run a snippet, and check the leaderboard — all inline.</p>
+      <div class="tabs">
+        <button class="tab active" data-tab="t1">Feed</button>
+        <button class="tab" data-tab="t2">Run a Snippet</button>
+        <button class="tab" data-tab="t3">Leaderboard</button>
+      </div>
+      <div class="preview-frame reveal">
+        <div class="preview-content active" id="t1">
+          <div class="mini-post" style="padding:0;">
+            <div class="mini-row"><div class="mini-av"></div><div class="mini-bar" style="max-width:60%;"></div></div>
+            <div class="mini-row"><div class="mini-av" style="background:var(--green);"></div><div class="mini-bar" style="max-width:80%;"></div></div>
+            <div class="mini-row"><div class="mini-av" style="background:var(--text-3);"></div><div class="mini-bar" style="max-width:45%;"></div></div>
+          </div>
+        </div>
+        <div class="preview-content" id="t2">
+          <div style="font-family:var(--font-mono);font-size:13px;color:var(--text-2);">
+            <div>function <span style="color:var(--accent);">flatten</span>(list) { ... }</div>
+            <div style="margin-top:10px;color:var(--text-3);">// tap Run on the post</div>
+            <div style="margin-top:6px;color:var(--green);">console → [1, 2, 3, 4, 5]</div>
+          </div>
+        </div>
+        <div class="preview-content" id="t3">
+          <div style="font-family:var(--font-mono);font-size:13px;color:var(--text-2);">
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);">1. priya_dev <span style="color:var(--accent);">3,510 pts</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);">2. devon.k <span>2,960 pts</span></div>
+            <div style="display:flex;justify-content:space-between;padding:9px 0;">3. sensa <span>2,140 pts</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="testi-bars">
+        <div class="testi-bar reveal" style="background:var(--accent-dim);">
+          <div class="name" style="color:var(--accent);">Priya N.</div>
+          <div class="role">Backend Engineer</div>
+          <a href="#">Read the story →</a>
+        </div>
+        <div class="testi-bar quote reveal" style="background:var(--surface);">"Posted a debounce hook and woke up to 96 likes and a real fix in the comments."</div>
+        <div class="testi-bar quote reveal" style="background:var(--surface-2);">"Watching my points climb the leaderboard is weirdly addictive."</div>
+        <div class="testi-bar quote reveal" style="background:var(--surface);">"Feels like Twitter and GitHub had a very productive kid."</div>
+        <div class="testi-bar quote reveal" style="background:var(--surface-2);">"Landed an interview from a thread I posted at 1am."</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="community">
+    <div class="wrap">
+      <h2 class="reveal">Join the community</h2>
+      <p class="reveal">See what developers are building, posting, and climbing the board on forkSpace right now.</p>
+      <a class="btn btn-ghost reveal" href="#">Join us on Discord</a>
+    </div>
+  </section>
+</main>
+
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="brand">
+          <span class="brand-title">forkSpace</span>
+          <span class="brand-tag"><svg width="20" height="20"><use href="#icon-brand"></use></svg></span>
+        </div>
+        <div class="social-row" style="margin-top:16px;">
+          <a href="#">X</a><a href="#">GH</a><a href="#">DC</a><a href="#">YT</a>
+        </div>
+      </div>
+      <div>
+        <p style="color:var(--text-3);font-size:12.5px;margin-bottom:10px;font-family:var(--font-mono);">get product updates from forkSpace</p>
+        <div class="subscribe">
+          <input type="email" placeholder="you@stack.dev">
+          <a class="btn btn-primary" href="#">Subscribe</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="/feeds.html">Feed</a><a href="/homepage.html">Challenge Board</a><a href="/profile.html">Dev Profile</a>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <a href="#">For Students</a><a href="#">For Job Seekers</a><a href="#">For Teams</a><a href="#">For Open Source</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="#">Blog</a><a href="#">Support</a><a href="#">Status</a><a href="#">Brand Assets</a>
+      </div>
+      <div class="footer-col">
+        <h4>Developers</h4>
+        <a href="#">API Docs</a><a href="#">Changelog</a><a href="#">RSS</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a><a href="#">Careers</a><a href="#">Privacy</a><a href="#">Contact</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© forkSpace inc.</span>
+      <span>made for people who ship</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+      BOTTOM NAV — same component as homepage/feeds/profile
+============================================================ -->
+<nav class="bottom-nav">
+  <a href="/homepage.html" class="bottom-nav-link">
+    <svg width="20" height="20"><use href="#icon-trophy"></use></svg>
+    <span>Challenge</span>
+  </a>
+  <a href="/feeds.html" class="bottom-nav-link">
+    <svg width="20" height="20"><use href="#icon-feed"></use></svg>
+    <span>Feeds</span>
+  </a>
+  <a href="/profile.html" class="bottom-nav-link">
+    <svg width="20" height="20"><use href="#icon-user"></use></svg>
+    <span>Profile</span>
+  </a>
+</nav>
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+
+  document.querySelectorAll('.tab[data-tab]').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const group = tab.closest('.tabs');
+      group.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.preview-content').forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* ---------------- Scroll reveal ---------------- */
+  // stagger siblings that reveal together (cards in a grid, logo tiles, testimonial bars)
+  document.querySelectorAll('.grid2, .logo-strip, .testi-bars').forEach(group => {
+    [...group.children].forEach((child, i) => {
+      child.style.setProperty('--i', i);
+    });
+  });
+
+  const revealTargets = document.querySelectorAll('.reveal, .reveal-type');
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  revealTargets.forEach(el => revealIO.observe(el));
+</script>
+
+</body>
+</html>
