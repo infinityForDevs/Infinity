@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal</title>
+ <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+  <div class="signup-card">
+    <div class="loading-overlay" id="loadingOverlay">
+      <svg width="80" height="80" viewBox="0 0 100 100">
+        <polygon points="50,10 85,30 85,70 50,90 15,70 15,30" fill="none" stroke="#232630" stroke-width="4"/>
+        <polygon class="hexagon-path" points="50,10 85,30 85,70 50,90 15,70 15,30" pathLength="100" stroke-dasharray="30 70"/>
+      </svg>
+    </div>
+
+    <div class="brand">
+      <span class="brand-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 12c2.4-3.2 4.8-5 7.5-5 2.5 0 4 2 4 5s-1.5 5-4 5c-2.7 0-5.1-1.8-7.5-5-2.4 3.2-4.8 5-7.5 5-2.5 0-4-2-4-5s1.5-5 4-5c2.7 0 5.1 1.8 7.5 5z"/>
+        </svg>
+      </span>
+      <span class="brand-name">forkSpace</span>
+    </div>
+
+    <div id="signupView">
+      <div class="wizard-header">
+        <div class="progress-bars">
+          <div class="bar active" id="bar-1"></div>
+          <div class="bar" id="bar-2"></div>
+          <div class="bar" id="bar-3"></div>
+          <div class="bar" id="bar-4"></div>
+        </div>
+        <div class="step-counter" id="step-counter">1 / 4</div>
+      </div>
+
+      <form id="signupForm" onsubmit="handleSubmit(event)">
+        <div class="form-step active" id="step-1">
+          <h2 class="step-title">Your identity</h2>
+          <p class="step-subtitle">Start with what to call you</p>
+          
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="First name" required>
+          </div>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Last name" required>
+          </div>
+          
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Continue &rarr;</button>
+          </div>
+        </div>
+
+        <div class="form-step" id="step-2">
+          <h2 class="step-title">Stay connected</h2>
+          <p class="step-subtitle">How should we reach you?</p>
+          
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Email address" required>
+          </div>
+          <div class="input-group select-wrapper">
+            <select class="form-control">
+              <option value="individual">Individual</option>
+              <option value="business">Business</option>
+            </select>
+          </div>
+          
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Continue &rarr;</button>
+          </div>
+        </div>
+
+        <div class="form-step" id="step-3">
+          <h2 class="step-title">Enter code</h2>
+          <p class="step-subtitle">We sent a verification code to your email</p>
+          
+          <div class="input-group">
+            <input type="text" maxlength="6" pattern="\d{6}" class="form-control" placeholder="Enter 6-digit code" required>
+          </div>
+          
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+            <button type="button" class="btn btn-primary" onclick="nextStep()">Continue &rarr;</button>
+          </div>
+        </div>
+
+        <div class="form-step" id="step-4">
+          <h2 class="step-title">Lock it down</h2>
+          <p class="step-subtitle">Choose a strong password</p>
+          
+          <div class="input-group">
+            <input type="password" id="password" class="form-control" placeholder="Password" required>
+            <button type="button" class="password-toggle" onclick="togglePassword('password')">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+          <div class="input-group">
+            <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required>
+            <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword')">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+            </button>
+          </div>
+          
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+            <button type="submit" class="btn btn-primary">Join</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="footer-links">
+        <p class="signin-text">Already have an account? <a href="#" onclick="switchView('login')">Sign in</a></p>
+        <div class="or-divider">
+          <span>Or Continue With</span>
+        </div>
+        <div class="social-auth-container">
+          <button class="social-btn">
+            <svg class="icon-google" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+              <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+              <path fill="#4285F4" d="M46.5 24c0-1.65-.15-3.23-.42-4.78H24v9.03h12.75c-.55 2.94-2.2 5.43-4.7 7.11l7.3 5.65C43.6 36.6 46.5 30.9 46.5 24z"/>
+              <path fill="#FBBC05" d="M10.54 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.98-6.19z"/>
+              <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.3-5.65c-2.03 1.35-4.63 2.16-8.59 2.16-6.26 0-11.57-4.22-13.46-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+            </svg>
+            <span>Google</span>
+          </button>
+
+          <button class="social-btn">
+            <svg class="icon-github" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+            </svg>
+            <span>GitHub</span>
+          </button>
+        </div>
+      
+           </div>
+    </div>
+
+    <div id="loginView" style="display: none;">
+      <h2 class="step-title">Welcome back</h2>
+      <p class="step-subtitle">Sign in to access your Account</p>
+
+      <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Username or Email" required>
+        </div>
+        <div class="input-group">
+          <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+          <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+          </button>
+        </div>
+
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </div>
+      </form>
+
+      <div class="footer-links">
+        <p class="signin-text">Don't have an account? <a href="#" onclick="switchView('signup')">Sign up</a></p>
+          </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 4; // Updated total steps count
+
+    // Helper function to handle the loading panel state
+    function simulateLoading(duration, callback) {
+      const loader = document.getElementById('loadingOverlay');
+      loader.classList.add('active');
+      setTimeout(() => {
+        loader.classList.remove('active');
+        if (callback) callback();
+      }, duration);
+    }
+
+    // Handles view routing between Signup and Login
+    function switchView(view) {
+      simulateLoading(600, () => {
+        if (view === 'login') {
+          document.getElementById('signupView').style.display = 'none';
+          document.getElementById('loginView').style.display = 'block';
+        } else {
+          document.getElementById('loginView').style.display = 'none';
+          document.getElementById('signupView').style.display = 'block';
+          // Reset multi-step wizard state back to first panel
+          currentStep = 1;
+          updateWizardUI();
+        }
+      });
+    }
+
+    function updateWizardUI() {
+      // Toggle form panel visibility
+      document.querySelectorAll('.form-step').forEach((step, idx) => {
+        step.classList.toggle('active', idx + 1 === currentStep);
+      });
+
+      // Update Top Dash Indicators
+      for (let i = 1; i <= totalSteps; i++) {
+        const bar = document.getElementById(`bar-${i}`);
+        bar.classList.toggle('active', i <= currentStep);
+      }
+
+      // Update String Counter Label
+      document.getElementById('step-counter').textContent = `${currentStep} / ${totalSteps}`;
+    }
+
+    function nextStep() {
+      const currentPanel = document.getElementById(`step-${currentStep}`);
+      const inputs = currentPanel.querySelectorAll('input[required]');
+      let valid = true;
+      
+      inputs.forEach(input => {
+        if (!input.checkValidity()) {
+          input.reportValidity();
+          valid = false;
+        }
+      });
+
+      if (valid && currentStep < totalSteps) {
+        // Triggers beautiful hexagon loader during wizard panel transition
+        simulateLoading(800, () => {
+          currentStep++;
+          updateWizardUI();
+        });
+      }
+    }
+
+    function prevStep() {
+      if (currentStep > 1) {
+        simulateLoading(400, () => {
+          currentStep--;
+          updateWizardUI();
+        });
+      }
+    }
+
+    function togglePassword(inputId) {
+      const field = document.getElementById(inputId);
+      field.type = field.type === "password" ? "text" : "password";
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+      
+      simulateLoading(1800, () => {
+        alert("Registration complete! Welcome.");
+      });
+    }
+
+    function handleLoginSubmit(event) {
+      event.preventDefault();
+      simulateLoading(3000, () => {
+        alert("Authentication successful! Welcome back.");
+      });
+    }
+  </script>
+  <script>
+    // 1. Updated criteria: Min 8 characters, 1 uppercase, 1 lowercase, and 1 special character
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&-.()/;])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    // 2. Select DOM Elements
+    const signupForm = document.getElementById('signupForm');
+    const passwordInput = document.getElementById('password');
+
+    // Create a small message element below the input for feedback
+    const feedbackMessage = document.createElement('div');
+    feedbackMessage.style.fontSize = '12px';
+    feedbackMessage.style.marginTop = '4px';
+    feedbackMessage.style.transition = 'color 0.2s ease';
+    passwordInput.parentNode.appendChild(feedbackMessage);
+
+    // 3. Real-time Validation (Checks as the user types)
+    passwordInput.addEventListener('input', () => {
+      const value = passwordInput.value;
+      
+      if (value === "") {
+        feedbackMessage.textContent = "";
+        passwordInput.style.borderColor = "var(--input-border)";
+      } else if (strongPasswordRegex.test(value)) {
+        feedbackMessage.textContent = "✓ Strong password";
+        feedbackMessage.style.color = "#10b981"; // Green
+        passwordInput.style.borderColor = "#10b981";
+      } else {
+        feedbackMessage.textContent = "Weak: Must be 8+ chars with uppercase, lowercase, and a symbol.";
+        feedbackMessage.style.color = "#ef4444"; // Red
+        passwordInput.style.borderColor = "#ef4444";
+      }
+    });
+
+    // 4. Strict Submission Blocking
+    signupForm.addEventListener('submit', (event) => {
+      const value = passwordInput.value;
+      
+      if (!strongPasswordRegex.test(value)) {
+        event.preventDefault(); // Stop the form from submitting
+        passwordInput.focus();
+        alert("Please choose a stronger password before joining.");
+      }
+    });
+  </script>
+</body>
+</html>

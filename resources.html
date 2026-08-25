@@ -76,10 +76,7 @@
         <div class="field-label-row">
           <span class="field-label">What type of post is this?</span>
         </div>
-        <div class="mood-toggle" id="postTypeToggle" role="group" aria-label="Post type">
-          <button type="button" class="mood-btn active" data-type="jovial">Jovial</button>
-          <button type="button" class="mood-btn" data-type="professional">Professional</button>
-        </div>
+        
       </div>
 
       <!-- Title -->
@@ -157,20 +154,9 @@
 ============================================================ */
 document.getElementById('backBtn').addEventListener('click', () => {
   if (document.referrer) history.back();
-  else window.location.href = '/index.html';
+  else window.location.href = 'https://infinityfordevs.github.io/Infinity/feeds.html';
 });
 
-/* ============================================================
-   Post type toggle (Jovial / Professional) — jovial is default
-============================================================ */
-const appShell = document.getElementById('appShell');
-document.getElementById('postTypeToggle').addEventListener('click', e => {
-  const btn = e.target.closest('.mood-btn');
-  if (!btn || btn.classList.contains('active')) return;
-  document.querySelectorAll('#postTypeToggle .mood-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  appShell.classList.toggle('mood-professional', btn.dataset.type === 'professional');
-});
 
 /* ============================================================
    Toasts — modern replacement for alert()

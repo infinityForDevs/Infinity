@@ -68,10 +68,7 @@ input, textarea { font-family: inherit; }
   padding: 0 14px 96px;
 }
 
-.app-shell.mood-professional {
-  --accent:      var(--accent-professional);
-  --accent-dim:  var(--accent-professional-dim);
-}
+
 
 /* ---------------- Topbar ---------------- */
 
@@ -221,32 +218,6 @@ input, textarea { font-family: inherit; }
 .char-counter.warn { color: var(--accent); }
 .char-counter.limit { color: var(--red); }
 
-/* ---------------- Post-type toggle (same visual language as the
-   homepage mood switch, reused here for a different purpose) ---------------- */
-
-.mood-toggle {
-  display: inline-flex;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 3px;
-  gap: 2px;
-  align-self: flex-start;
-}
-
-.mood-btn {
-  border: none;
-  background: transparent;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 12px;
-  padding: 7px 15px;
-  border-radius: 999px;
-  color: var(--text-3);
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.mood-btn.active { background: var(--accent); color: var(--accent-text); }
 
 /* ---------------- Title & description ---------------- */
 

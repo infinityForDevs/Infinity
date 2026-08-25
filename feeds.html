@@ -64,7 +64,7 @@
     </div>
 
     <div class="topbar-actions">
-      <a href="/resources/resources.html">
+      <a href="https://infinityfordevs.github.io/Infinity/resources.html">
         <button class="icon-btn" aria-label="Create post">
           <svg width="20" height="20"><use href="#icon-post"></use></svg>
         </button>
@@ -74,7 +74,7 @@
           <svg width="20" height="20"><use href="#icon-bell"></use></svg>
         </button>
       </a>
-      <a href="/profile.html">
+      <a href="https://infinityfordevs.github.io/Infinity/profile.html">
         <img src="/IMG-20260728-WA8256.jpg" class="avatar" alt="Profile">
       </a>
     </div>
@@ -291,7 +291,7 @@
   </main>
 
   <!-- FAB — same "add post" pattern as homepage -->
-  <a href="/resources/resources.html">
+  <a href="https://infinityfordevs.github.io/Infinity/resources.html">
     <button class="fab-create" id="add-post" aria-label="Create post">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
         <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
@@ -303,7 +303,7 @@
         BOTTOM NAV
   ============================================================ -->
   <nav class="bottom-nav">
-    <a href="/homepage.html" class="bottom-nav-link">
+    <a href="https://infinityfordevs.github.io/Infinity/homepage.html" class="bottom-nav-link">
       <svg width="20" height="20"><use href="#icon-trophy"></use></svg>
       <span>Challenge</span>
     </a>
@@ -311,7 +311,7 @@
       <svg width="20" height="20"><use href="#icon-feed"></use></svg>
       <span>Feeds</span>
     </a>
-    <a href="/profile.html" class="bottom-nav-link">
+    <a href="https://infinityfordevs.github.io/Infinity/profile.html" class="bottom-nav-link">
       <svg width="20" height="20"><use href="#icon-user"></use></svg>
       <span>Profile</span>
     </a>
@@ -357,134 +357,7 @@ document.querySelectorAll('.follow-btn').forEach(btn => {
   });
 });
 
-/* RUN CODE — via Piston API (https://github.com/engineer-man/piston) */
 
-// NOTE: As of Feb 2026 the public Piston API requires an authorization
-// key (see github.com/engineer-man/piston). Paste yours below, or point
-// PISTON_API_URL at your own self-hosted instance instead.
-const PISTON_API_URL = "https://emkc.org/api/v2/piston/execute";
-const PISTON_API_KEY = ""; // leave blank if self-hosting / not required
-
-// Piston only accepts these exact language names (its "designated
-// languages" — see GET /api/v2/piston/runtimes for the live list).
-// Map each code-filename's extension to the right Piston language.
-const EXT_TO_PISTON_LANG = {
-  js: "javascript", mjs: "javascript", cjs: "javascript",
-  ts: "typescript",
-  py: "python", py2: "python2",
-  rb: "ruby",
-  java: "java",
-  c: "c",
-  cpp: "c++", cc: "c++", cxx: "c++",
-  cs: "csharp",
-  go: "go",
-  rs: "rust",
-  php: "php",
-  swift: "swift",
-  kt: "kotlin",
-  scala: "scala",
-  pl: "perl",
-  lua: "lua",
-  hs: "haskell",
-  ex: "elixir", exs: "elixir",
-  erl: "erlang",
-  clj: "clojure",
-  groovy: "groovy",
-  dart: "dart",
-  r: "rscript",
-  jl: "julia",
-  nim: "nim",
-  cr: "crystal",
-  d: "d",
-  f: "fortran", f90: "fortran", f95: "fortran",
-  sh: "bash",
-  ps1: "powershell",
-  sql: "sqlite3",
-  asm: "nasm"
-};
-
-function langForFilename(filename) {
-  const ext = filename.trim().split(".").pop().toLowerCase();
-  return EXT_TO_PISTON_LANG[ext] || null;
-}
-
-function showRunOutput(codeBlock, { lang, text, isError }) {
-  const panel = codeBlock.querySelector(".run-output");
-  panel.querySelector(".run-output-lang").textContent = lang || "";
-  const body = panel.querySelector(".run-output-body");
-  body.textContent = text;
-  body.classList.toggle("run-output-error", !!isError);
-  panel.hidden = false;
-}
-
-document.querySelectorAll(".run-btn").forEach(btn => {
-  btn.addEventListener("click", async () => {
-    const codeBlock = btn.closest(".code-block");
-    const filename   = codeBlock.querySelector(".code-filename").textContent;
-    const code       = codeBlock.querySelector("code").innerText;
-    const label      = btn.querySelector("span");
-    const lang       = langForFilename(filename);
-
-    if (!lang) {
-      showRunOutput(codeBlock, {
-        lang: filename,
-        text: `"${filename}" isn't a language Piston supports. See GET ${PISTON_API_URL.replace("execute", "runtimes")} for the full list.`,
-        isError: true
-      });
-      return;
-    }
-
-    const originalLabel = label.textContent;
-    label.textContent = "Running…";
-    btn.disabled = true;
-
-    try {
-      const res = await fetch(PISTON_API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...(PISTON_API_KEY ? { "Authorization": PISTON_API_KEY } : {})
-        },
-        body: JSON.stringify({
-          language: lang,
-          version: "*",
-          files: [{ name: filename, content: code }]
-        })
-      });
-
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.message || `Piston returned HTTP ${res.status}`);
-      }
-
-      const data = await res.json();
-      // compile errors (for compiled languages) take priority over run output
-      const stage = (data.compile && data.compile.code !== 0) ? data.compile : data.run;
-      const output = (stage.stdout || "") + (stage.stderr || "");
-
-      showRunOutput(codeBlock, {
-        lang: `${data.language} ${data.version}`,
-        text: output.trim() || "(no output)",
-        isError: stage.code !== 0
-      });
-    } catch (err) {
-      showRunOutput(codeBlock, {
-        lang,
-        text: `Request failed: ${err.message}`,
-        isError: true
-      });
-    } finally {
-      label.textContent = originalLabel;
-      btn.disabled = false;
-    }
-  });
-});
-
-document.querySelectorAll(".run-output-close").forEach(closeBtn => {
-  closeBtn.addEventListener("click", () => {
-    closeBtn.closest(".run-output").hidden = true;
-  });
-});
 
 /* FAVORITE (SAVE) TOGGLE — count goes up when favorited, back down when un-favorited */
 document.querySelectorAll('.favorite-btn').forEach(btn => {
